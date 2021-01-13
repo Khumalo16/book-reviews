@@ -1,0 +1,13 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %} {{ title }} {% endblock%}
+
+{% block body %} 
+
+{{ entryPage |safe }} 
+ <h1>Possible pages that are similar to your search results....</h1>
+{% for entry in entries %}
+<li><a href="{% url 'wiki:title' title=entry%}">{{ entry }}</a></li>
+{% endfor %}
+
+{% endblock %}

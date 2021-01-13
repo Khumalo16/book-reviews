@@ -1,0 +1,28 @@
+.navigate {
+    display: flex;
+    padding: 10px;
+}
+.container .navigate ul {
+    display: flex;
+    justify-content: center;
+}
+
+ .container .navigate ul li {
+    float: right ;
+    list-style-type: none;
+}
+.navigate a {
+    margin-right: 10px;
+    font-size: 0.8em;
+    height: 5px;
+    border-bottom: 1px solid transparent;
+    color: black;
+    text-decoration: none;
+    transition: color 0.5s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navigate a:hover {
+    color :#8a8a8a;
+    border-bottom: 1px solid black;
+}
