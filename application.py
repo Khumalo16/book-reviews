@@ -1,9 +1,10 @@
 import os
 
-from flask import Flask, session
+from flask import Flask, session, render_template, request, redirect, url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+
 
 app = Flask(__name__)
 Session(app)
@@ -24,4 +25,25 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    return "Project 1: TODO"
+
+    return render_template('book/index.html')
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "GET":
+        return redirect(url_for('index'))
+    session.pop('user_id', None)
+    username = request.form.get("username")
+    password = request.form.get("password")
+    if username == "ismail":
+        if password == "ismail":
+            session['user_id'] = 1
+            return  redirect(url_for('profile'))
+        return redirect(url_for('index'))
+    return render_template('book/index.html')
+
+@app.route("/profile", methods=["GET"])
+def profile():
+
+    return render_template('book/profile.html')
+
