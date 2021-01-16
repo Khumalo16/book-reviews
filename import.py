@@ -12,7 +12,7 @@ app = Flask(__name__)
 Session(app)
 
 # Check for environment variable
-if not os.getenv("DATABASE_URL"):
+if not os.getenv("postgres://hhlfjdydmhizma:f2137338537e4dd691d12095ab2abf893b8bfca7b2b72d74a260c27367a6111a@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d4edp75p3661vk"):
     raise RuntimeError("DATABASE_URL is not set")
 
 # Configure session to use filesystem
