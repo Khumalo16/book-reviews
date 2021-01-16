@@ -19,10 +19,10 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine("postgresql://hhlfjdydmhizma:f2137338537e4dd691d12095ab2abf893b8bfca7b2b72d74a260c27367a6111a@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d4edp75p3661vk")
 db = scoped_session(sessionmaker(bind=engine))
 
-
+isbn = db.execute("SELECT id, isbn, title,author, year FROM books WHERE id = 2").fetchone()
 @app.route("/")
 def index():
 
@@ -45,5 +45,5 @@ def login():
 @app.route("/profile", methods=["GET"])
 def profile():
 
-    return render_template('book/profile.html')
+    return render_template('book/profile.html', isbn=isbn.author)
 
