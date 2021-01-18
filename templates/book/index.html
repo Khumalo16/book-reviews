@@ -2,8 +2,13 @@
 
 {% block title %} Longin {% endblock %}
 
+{% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
+
 {% block body %} 
-	
+<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
+
+<li><a href="{{ url_for('registrationPage')}}">Be a member</a></li>
+
 	<div class="login">
 		<form action="{{ url_for('login') }}" method="post">
 			<input type="text" name="username" placeholder="Enter your username">
@@ -11,6 +16,6 @@
 			<input type="submit" name="submit">
 		</form>
 	</div>
-
+	
 {% endblock %}
 
