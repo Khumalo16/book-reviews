@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request, redirect, url_for,flash
+from flask import Flask, session, render_template, request, redirect, url_for,flash, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -27,6 +27,10 @@ engine = create_engine("postgresql://hhlfjdydmhizma:f2137338537e4dd691d12095ab2a
 db = scoped_session(sessionmaker(bind=engine))
 
 isbn = db.execute("SELECT id, isbn, title,author, year FROM books WHERE id = 2").fetchone()
+@app.route("/")
+def index1():
+    return render_template('book/index.html')
+
 @app.route("/login")
 def index():
     return render_template('book/index.html')
@@ -66,29 +70,32 @@ def registration():
 
 @app.route("/search", methods=["POST"])
 def login():
-    if request.method == "POST":
-       
-        username = request.form.get("username")
-        password = request.form.get("password")
-        select = "SELECT * FROM users WHERE username = :username AND password = :password"
+    
+    username = request.form.get("username")
+    password = request.form.get("password")
+    select = "SELECT * FROM users WHERE username = :username AND password = :password"
 
-        if db.execute(select,{"username": username, "password": password}).rowcount == 0:
-            flash("incorect username/password")
-            return redirect(url_for('index'))
+    if db.execute(select,{"username": username, "password": password}).rowcount == 0:
+        flash("incorect username/password")
+        return redirect(url_for('index'))
 
-        select = "SELECT * FROM users WHERE username = :username"
-        user_id = db.execute(select,{"username": username}).fetchone()
+    select = "SELECT * FROM users WHERE username = :username"
+    user_id = db.execute(select,{"username": username}).fetchone()
 
-        session.permanent = True
-        session["user_id"] = user_id[0]
-        user = user_id[0]
-        return render_template('book/search.html')
-    return  redirect(url_for('index'))
+    session.permanent = True
+    session["user_id"] = user_id[0]
+    user = user_id[0]
+    select = "SELECT name, surname FROM users WHERE id = :id"
+    name = db.execute(select, {"id": user}).fetchone()
+    return render_template('book/search.html',name=name)
 
 @app.route("/search", methods=["GET"])
 def check():
     if session.get("user_id") is not None:
-        return render_template('book/search.html')
+        select = "SELECT name, surname FROM users WHERE id = :id"
+        user = session["user_id"]
+        name = db.execute(select, {"id": user}).fetchone()
+        return render_template('book/search.html',name=name)
 
     return redirect(url_for('index'))
 
@@ -100,22 +107,25 @@ def logout():
 
 @app.route("/book", methods=["POST","GET"])
 def book():
-    
+
+    select = "SELECT name, surname FROM users WHERE id = :id"
+    user = session["user_id"]
+    name = db.execute(select, {"id": user}).fetchone()
     select = "SELECT * FROM books WHERE isbn LIKE :isbn OR title LIKE :title OR author LIKE :author"
     if session.get("user_id") is None:
         return redirect(url_for('index'))
     if request.method == "POST":
         book = request.form.get("book")
         getbook = db.execute(select,{"isbn":"%"+book+"%", "title": "%"+book+"%", "author":"%"+book+"%"}).fetchall()
-        session["getbook"] = getbook
-
+        session["getbook"] = getbook  
         if not getbook:
-            return render_template('book/noBookFound.html') 
+            return render_template('book/noBookFound.html',name=name) 
     if request.method == "GET":
         if not session.get("getbook"):
-            return render_template('book/noBookFound.html')
-        
-    return render_template('book/results.html', books=session.get("getbook"))
+            return render_template('book/noBookFound.html',name=name)
+
+       
+    return render_template('book/results.html', books=session.get("getbook"),name=name)
 
 @app.route("/details/<string:isbn>", methods=["POST","GET"])
 def details(isbn):
@@ -136,7 +146,10 @@ def details(isbn):
     for rate in range(1,6):
         rates.append(rate)
         rate+=1
-    return render_template('book/review.html', details=details, reviews=reviews,rates=rates)
+    select = "SELECT name, surname FROM users WHERE id = :id"
+    user = session["user_id"]
+    name = db.execute(select, {"id": user}).fetchone()
+    return render_template('book/review.html', details=details, reviews=reviews,rates=rates,name=name)
 
 
 @app.route("/review", methods=["POST", "GET"])
@@ -176,3 +189,43 @@ def review():
             flash("You've reviewed this book date " + timereviewed + " at "+ now)
             return redirect(('details/' + isbn))
     return redirect(('book' + isbn))
+
+@app.route("/api/book_review/<string:isbn>", methods=["GET"])
+def api(isbn):
+    if session.get("user_id") is None:
+            return redirect(url_for('index'))
+
+    if request.method != "GET":
+        flash("Read the API documantion")
+        return  redirect(url_for('index'))
+    session["isbn"] = isbn
+    user_id = session["user_id"]
+    isbn_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
+    
+    if isbn_id is None:
+        return jsonify({"error": "No book with an isbn " + isbn +" found"}), 422
+    isbn_id = isbn_id[0]
+    select = "SELECT isbn, title, author, year, COUNT(*), AVG(rate)::numeric(10,2) FROM reviews JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id GROUP BY books.id"
+    reviews = db.execute(select, {"isbn_id":isbn_id}).fetchone()
+    
+    if reviews is None:
+
+        select = "SELECT * FROM books WHERE id = :isbn"
+        alter = db.execute(select, {"isbn":isbn_id}).fetchone() 
+        return jsonify({
+            "title":alter.title,
+            "author":alter.author,
+            "year":alter.year,
+            "isbn":alter.isbn,
+            "count":0,
+            "average":0
+        })
+
+    return  jsonify({
+        "title":reviews.title,
+        "author":reviews.author,
+        "year":reviews.year,
+        "isbn":reviews.isbn,
+        "count":reviews.count,
+        "average":reviews.avg
+    })

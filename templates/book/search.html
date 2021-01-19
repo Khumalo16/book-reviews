@@ -1,16 +1,17 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Profile {% endblock %}
+{% block title %} Search {% endblock %}
 
-{% block body %} 
-<li><a href="{{ url_for('logout')}}">logout</a></li>
+{% block body %}
+<ul>
+   <li><a href="{{ url_for('logout')}}">logout</a></li>
+   <li>{{name.name}} {{name.surname}}</li>
+</ul>
+
 <div class="search">
    <form action="{{ url_for('book')}}" method="post"> 
-      <input type="text" name="book">
-      <select name="comp_select">
-         <option value="me"> yes</option>
-      </select>
-      <button type="submit" ></button>
+      <input type="text" name="book" placeholder="Type title of the book or isbn">
+      <button type="submit" >Search</button>
     
    </form>
 </div>

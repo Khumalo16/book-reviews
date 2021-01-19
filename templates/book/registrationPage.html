@@ -1,10 +1,10 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Profile {% endblock %}
+{% block title %} registration {% endblock %}
 
 {% block body %} 
 
-
+<li><a href="{{ url_for('login')}}">login</a></li>
     <form action="{{ url_for('registration')}}" method="post">
         <input type="text" name="name" placeholder="Name" required>
         <input type="text" name="surname" placeholder="surname" required>

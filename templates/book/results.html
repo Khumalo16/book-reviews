@@ -1,10 +1,12 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Profile {% endblock %}
+{% block title %} results {% endblock %}
 
 {% block body %} 
+<ul>
     <li><a href="{{ url_for('logout')}}">logout</a></li>
-
+    <li>{{name.name}} {{name.surname}}</li>
+ </ul>
     {% for book in books %}
       
 

@@ -1,9 +1,12 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Profile {% endblock %}
+{% block title %} review {% endblock %}
 
 {% block body %} 
-    <li><a href="{{ url_for('logout')}}">logout</a></li>
+<ul>
+  <li><a href="{{ url_for('logout')}}">logout</a></li>
+  <li>{{name.name}} {{name.surname}}</li>
+</ul>
 
     <h>{{details}}</h>
     <hr>
@@ -21,7 +24,7 @@
       <input type="submit"> 
     </form>
     <h1>{{reviews}}</h1>
-    
+
     {% with messages = get_flashed_messages() %}
       {% if messages %}
           {% for msg in messages %}

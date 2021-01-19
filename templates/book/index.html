@@ -1,13 +1,16 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Longin {% endblock %}
+{% block title %} long in {% endblock %}
 
 {% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
 
 {% block body %} 
 <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
 
-<li><a href="{{ url_for('registrationPage')}}">Be a member</a></li>
+<ul>
+	<li><a href="{{ url_for('registrationPage')}}">Be a member</a></li>
+	<li><a href="{{ url_for('login')}}">login</a></li>
+ </ul>
 
 	<div class="login">
 		<form action="{{ url_for('login') }}" method="post">
