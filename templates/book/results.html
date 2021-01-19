@@ -1,0 +1,17 @@
+{% extends "book/layout.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body %} 
+    <li><a href="{{ url_for('logout')}}">logout</a></li>
+
+    {% for book in books %}
+      
+
+        <ul>
+            <li> {{book.title}} : {{book.author}} : {{book['isbn']}} : {{book.year}}</li>
+        </ul>
+        <a href="/details/{{book['isbn']}}">See book's details</a>
+  
+    {% endfor %}
+{% endblock %}

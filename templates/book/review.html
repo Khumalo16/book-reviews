@@ -1,0 +1,32 @@
+{% extends "book/layout.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body %} 
+    <li><a href="{{ url_for('logout')}}">logout</a></li>
+
+    <h>{{details}}</h>
+    <hr>
+    
+    <form action="{{ url_for('review')}}" method="POST">
+      <input type="text" name="reviews">
+     
+      <select name="rate" list="rate">
+        {% for rate in rates %}
+        <datalist>
+            <option value="{{rate}}" name>{{rate}}</option>
+        </datalist>
+        {% endfor %}
+      </select>
+      <input type="submit"> 
+    </form>
+    <h1>{{reviews}}</h1>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for msg in messages %}
+          <p> {{msg}}</p>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endblock %}

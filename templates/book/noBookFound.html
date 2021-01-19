@@ -1,0 +1,13 @@
+{% extends "book/layout.html" %}
+
+{% block title %} Longin {% endblock %}
+
+{% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
+
+{% block body %} 
+<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
+
+<li><a href="{{ url_for('login')}}">Back to the search</a></li>
+
+	<h>No book found</h>
+{% endblock %}
