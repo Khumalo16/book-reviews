@@ -1,6 +1,6 @@
-import os
+import os, requests
 
-from flask import Flask, session, render_template, request, redirect, url_for,flash, jsonify
+from flask import Flask, session, render_template, request, redirect, url_for,flash, jsonify, Markup
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -75,8 +75,18 @@ def login():
     password = request.form.get("password")
     select = "SELECT * FROM users WHERE username = :username AND password = :password"
 
+    if username == "" and password == "":
+        flash("Username and Password are required field*")
+        return redirect(url_for('index'))
+    if username == "":
+        flash("Username is a required field*")
+        return redirect(url_for('index'))
+    if password == "":
+        flash("Password is a required field*")
+        return redirect(url_for('index'))
+   
     if db.execute(select,{"username": username, "password": password}).rowcount == 0:
-        flash("incorect username/password")
+        flash("Sign-on failed. Username or Password is incorrect**")
         return redirect(url_for('index'))
 
     select = "SELECT * FROM users WHERE username = :username"
@@ -87,7 +97,11 @@ def login():
     user = user_id[0]
     select = "SELECT name, surname FROM users WHERE id = :id"
     name = db.execute(select, {"id": user}).fetchone()
-    return render_template('book/search.html',name=name)
+    select = "SELECT title, isbn, year, author FROM books LIMIT 100"
+    books = db.execute(select).fetchall()
+    apikey = "{apikey}"
+    goodreads = goodread("https://www.googleapis.com/books/v1/volumes")
+    return render_template('book/search.html',name=name, books=books)
 
 @app.route("/search", methods=["GET"])
 def check():
@@ -102,18 +116,19 @@ def check():
 @app.route("/loginout")
 def logout():
     session.clear()
-    flash("You have loged out")
+    flash("You are signed out!")
     return redirect(url_for('index'))
 
 @app.route("/book", methods=["POST","GET"])
 def book():
+    if session.get("user_id") is None:
+        return redirect(url_for('index'))
 
     select = "SELECT name, surname FROM users WHERE id = :id"
     user = session["user_id"]
     name = db.execute(select, {"id": user}).fetchone()
     select = "SELECT * FROM books WHERE isbn LIKE :isbn OR title LIKE :title OR author LIKE :author"
-    if session.get("user_id") is None:
-        return redirect(url_for('index'))
+    
     if request.method == "POST":
         book = request.form.get("book")
         getbook = db.execute(select,{"isbn":"%"+book+"%", "title": "%"+book+"%", "author":"%"+book+"%"}).fetchall()
@@ -229,3 +244,10 @@ def api(isbn):
         "count":reviews.count,
         "average":reviews.avg
     })
+    
+def goodread(url_isbn):
+    res = requests.get(url_isbn)
+    if res.status_code != 200:
+        raise Exception("ERROR: API request unsuccessful")
+    data = res.json()
+    return data

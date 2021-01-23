@@ -2,29 +2,56 @@
 
 {% block title %} long in {% endblock %}
 
-{% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
-
+{% block style %} 
+	<style>
+		.invisible {
+			display: none;
+		}
+	</style>
+{% endblock %}
+{% block login %} Signin {% endblock %}
+{% block join %} Join {% endblock %}
+{% block user %} User: None {% endblock %}
 {% block body %} 
-<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
-
-<ul>
-	<li><a href="{{ url_for('registrationPage')}}">Be a member</a></li>
-	<li><a href="{{ url_for('login')}}">login</a></li>
- </ul>
-
-	<div class="login">
-		<form action="{{ url_for('login') }}" method="post">
-			<input type="text" name="username" placeholder="Enter your username">
-			<input type="password" name="password" placeholder="Enter your password">
-			<input type="submit" name="submit">
-		</form>
-	</div>
-	{% with messages = get_flashed_messages() %}
-		{% if messages %}
-			{% for msg in messages %}
-			<p> {{msg}}</p>
-			{% endfor %}
-		{% endif %}
-	{% endwith %}
+<body>
+	<section>
+		<div class="container">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="sign-in"> Sign In</h3>
+				</div>
+				<hr>
+				<div class="card-body">
+					
+						{% with messages = get_flashed_messages() %}
+						{% if messages %}
+							{% for msg in messages %}
+							<div class="flash"><p> {{msg}}</p></div>
+							{% endfor %}
+								{% endif %}
+							{% endwith %}
+				
+					
+				
+					<div class="form-content">
+						<form action="{{ url_for('login')}}" method="post">
+							<p>Username:</p>
+							<input type="text" name="username" placeholder="Username" class="form-control">
+							<p>Password:</p>
+							<input type="password" name="password" placeholder="Password" class="form-control">
+							<button type="submit" name="submit" class="submit"> Sing-in</button>
+						</form>
+					</div>
+				</div>
+				<hr>
+				<div class="card-footer">
+					<p class="warning">Don't have an account <a id="sign-up" href="{{ url_for('registrationPage')}}">Sign up</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	   
+</body>	
+	
 {% endblock %}
 

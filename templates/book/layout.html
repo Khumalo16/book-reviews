@@ -1,14 +1,45 @@
-<!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<title> {% block title %} {% endblock %} </title>
-			<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-			{% block link %} {% endblock %}
-		</head>	
-		<body>
-			
-			{% block body %} {% endblock %}
-		</body>
+
 
 </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>Material Design for Bootstrap</title>
+
+	{% block style %} {% endblock %}
+	
+  </head>
+   <body>
+		<header>
+			<div class="header ">
+				<div class="title">
+					<h class="logo">Books<span>Review</span></h>
+				</div>
+				<div class="input-group invisible">
+					<form action="{{ url_for('book')}}" method="post">
+						<img src="{{ url_for('static', filename='search.jpg') }}" class="search-icon">
+						<input type="search"  class="inputText" name="book"  placeholder="search..."/>
+					</form> 
+				</div>
+				<div class="logs">
+					<ul> 
+						<li><a href="#">{% block login %} {% endblock %}</a></li>
+						<li><a href="#">{% block logout %} {% endblock %}</a></li>
+						<li><a href="#">{% block join %} {% endblock %}</a></li>
+						<li><a href="#"> {% block user %} {% endblock %}</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		{% block body %} {% endblock %}
+</body>
+</html>
+
+
+
+

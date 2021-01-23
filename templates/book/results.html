@@ -2,18 +2,22 @@
 
 {% block title %} results {% endblock %}
 
-{% block body %} 
-<ul>
-    <li><a href="{{ url_for('logout')}}">logout</a></li>
-    <li>{{name.name}} {{name.surname}}</li>
- </ul>
-    {% for book in books %}
-      
+{% block header %} 
 
-        <ul>
-            <li> {{book.title}} : {{book.author}} : {{book['isbn']}} : {{book.year}}</li>
-        </ul>
-        <a href="/details/{{book['isbn']}}">See book's details</a>
-  
+{% block logout %} Sign out {% endblock %}
+{% block user %} User: {{name.name}} {% endblock %}
+    
+{% endblock %}
+
+{% block body %} 
+    {% for book in books %}
+    <div class="results">
+        <vid class="inner-results">
+            <ul>  
+                <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
+                <li> {{book.title}} : {{book.author}} : {{book['isbn']}} : {{book.year}}</li>
+            </ul>
+        </vid>
+    </div>
     {% endfor %}
 {% endblock %}

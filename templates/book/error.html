@@ -2,6 +2,18 @@
 
 {% block title %} Profile {% endblock %}
 
+{% block header %} 
+
+<div class="navigate">
+   <li>
+      <a class="link" href="{{ url_for('logout')}}">log out</sp></a>
+      <a class="nav"> User: {{name.name}}</sp></a>	
+      <a class="nav">{{name.surname}}</sp></a>	
+   </li>
+</div>
+
+{% endblock %}
+
 {% block body %} 
 
  <h> Hello {{error}} </h>

@@ -2,18 +2,35 @@
 
 {% block title %} Search {% endblock %}
 
-{% block body %}
-<ul>
-   <li><a href="{{ url_for('logout')}}">logout</a></li>
-   <li>{{name.name}} {{name.surname}}</li>
-</ul>
+{% block header %} 
+{% block logout %} Sign out {% endblock %}
+{% block user %} User: {{name.name}} {% endblock %}
 
-<div class="search">
-   <form action="{{ url_for('book')}}" method="post"> 
-      <input type="text" name="book" placeholder="Type title of the book or isbn">
-      <button type="submit" >Search</button>
-    
-   </form>
-</div>
+
+{% endblock %}
+{% block body %}
+
+   {% for book in books %}
+    <section>
+        <div class="body-container">
+            <div class="book-pic">
+                <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
+            </div>
+            <div class="book-details">
+                <h1>{{book.title}}</h1> 
+                <h3>({{book.author}})</h3>
+                <h6> ISBN: {{book.isbn}} - Released: {{book.year}}</h6>
+                <form action="/details/{{book['isbn']}}" method="post">
+                    <button type="submit" class="button">Review this book</button>   
+                </form>
+            </div>
+            <div class="goodreads">
+
+            </div>
+        </div>
+        <hr class="alone">
+    </section>
+
+    {% endfor %}
 {% endblock %}
 

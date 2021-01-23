@@ -4,15 +4,26 @@
 
 {% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
 
+{% block header %} 
+
+{% block logout %} Sign out {% endblock %}
+{% block user %} User: {{name.name}} {% endblock %}
+    
+
+{% endblock %}
+
 {% block body %} 
-<ul>
-    <li><a href="{{ url_for('logout')}}">logout</a></li>
-    <li>{{name.name}} {{name.surname}}</li>
- </ul>
+
 <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
 
+   <div class="input-group">
+      <div class="form-outline">
+         <form action="{{ url_for('book')}}" method="post">
+            <img src="{{ url_for('static', filename='search.jpg') }}" class="search-icon">
+            <input type="search"  class="inputText" name="book"  placeholder="search..."/>
+         </form> 
+      </div>
+   </div>
 
-
-	<h>No book found</h>
-	<li><a href="{{ url_for('login')}}">Back to the search</a></li>
+<h>No book found</h>
 {% endblock %}

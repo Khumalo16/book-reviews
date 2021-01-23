@@ -1,0 +1,369 @@
+$color:  #8d7811;
+$purplelike: #e0e0dd;
+$cardshadow: #ecf1f8;
+$input: rgba(103, 14, 172, 0.133);
+$form: #91b8f3;
+$submit: #700d0d;
+
+
+body {
+    margin: 0;
+    list-style: noe;
+    text-decoration: none;
+}
+
+section {
+    padding: 45px 0;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    border: 1px solid grey;
+  
+}
+header {
+    background-color: rgba(103, 14, 172, 0.133);
+    border-bottom: 1px solid rgba(92, 6, 40, 0.133);
+
+    border-top: 1px solid rgba(211, 12, 45, 0.133);
+}
+.header {
+    height: 10%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+
+   
+    .title {
+        display: flex;
+        align-items: center;
+        width: 34%;
+
+  
+       
+        
+    }
+    .input-group {
+        align-items: center;
+        width: 33%;    
+        .inputText {
+            width: 100%;
+            padding: .4em 1em;  
+            outline: none;
+            border-radius: 7px;   
+            border: 1px solid #c6ccd3;  
+            padding-left: 2.5em;
+        }
+    }
+    
+    .inputText:hover {
+        border: 1px solid  rgba(103, 14, 172, 0.133);
+        box-shadow: 
+                    0 0 2px $input,
+                    0 0 3px $input,
+                    0 0 4px $input,
+                    0 0 5px $input,
+                    0 0 7px $input,
+                    0 0 8px $input,
+    }
+    .logs {
+       width: 33%;
+
+       ul {
+            display: flex;
+            list-style: none;
+
+            li {
+                margin: 0 1em;
+                a {
+                    text-decoration: none;
+                }
+                a:hover {
+                    color: #e2b10d;                }
+            }
+        }
+    }
+    .user {
+        width: 10%;
+        color: #093245;
+    }
+    .search-icon {
+        width: 15px;
+        position: relative;
+        top: 1.37em;
+        left: 0.3em;
+    }
+
+    .user-move {
+        padding: 1em;
+    }
+    .logo {
+        color: #1c6629;
+        font-weight: 20;
+        font-size: 30;
+        font-style: oblique;
+        
+        span {
+            font-weight: 800;
+        }
+
+        #p {
+            font-weight: 23;
+           
+         }
+         
+    }
+    
+
+    @media (max-width: 750px) {
+
+        .logs ul {
+            display: flex;
+            flex-direction: column;
+          
+        }
+        .inputText{
+        
+            min-width: 150px;
+        }
+       
+    }
+}
+
+@media (max-width: 1360px) { 
+    .logs ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+@media (max-width: 750px) {
+    .header {
+       display: flex;
+       flex-direction: column;
+       margin-bottom: 100px;
+       text-align: center;
+    }
+    .search-icon {
+        display: none;
+    }
+}
+@media (max-width: 400px) {
+    header {
+      height: 50%;
+    }
+}
+
+
+
+ .user, .key {
+            width: 25px; 
+           
+            
+} 
+
+
+
+.card {
+      
+ 
+   
+    color: #524949;
+    border-radius: 9px;
+
+    
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 4px;
+    border: none;
+    box-shadow: 0 0 2px $cardshadow,
+                0 0 3px $cardshadow,
+                0 0 4px $cardshadow,
+                0 0 5px $cardshadow,
+                0 0 7px $cardshadow,
+                0 0 8px $cardshadow,
+
+                0 0 16px $cardshadow,
+                0 0 4px $cardshadow,
+                0 0 17px $cardshadow,
+                0 0 16px $cardshadow,
+                0 0 8px $cardshadow,
+
+
+                0 0 12px $cardshadow,
+                0 0 11px $cardshadow,
+                0 0 10px $cardshadow,
+                0 0 13px $cardshadow,
+                0 0 6px $cardshadow,
+                0 0 1px $cardshadow;
+
+    .sign-in { 
+    font-size: 20;
+    padding-left: 2em;
+
+    }
+    #sign-up {
+        text-decoration: none;
+        
+    }
+    #sign-up:hover {
+        text-decoration: underline;
+    }
+    .warning {
+        padding-left: 2em;
+
+    }
+}
+   
+    .form-control  {
+     
+            border-radius: 20px;
+            width: 65%;
+            color: black;
+            width: 80%;
+            outline: none;
+            margin: 0.8em 0;
+            padding: 0.8em 1.5em;
+            border: 1px solid #b2b6b6;
+            
+        }
+
+         
+
+    .form-control:hover{
+ 
+        box-shadow: 0 0 2px $form,
+                0 0 3px $form,
+                0 0 4px $form,
+                0 0 5px $form,
+                0 0 7px $form,
+                0 0 8px $form;
+        
+    }
+
+    .user, .key {
+        width: 25px; 
+        opacity: .9;
+        left: -126px;
+        position: relative;
+        
+    } 
+    
+    .user {
+        top: 43px;  
+    }
+    
+    .key {
+        top: 43px;
+    }
+    
+    .submit {
+        border-radius: 5px;
+        width: 150px;
+        padding: 7px;
+        margin-top: 25px;
+        margin-right: 120px;  
+        background-color: $submit;
+        color: #fff;
+        margin-left: 1.5em;
+    }
+
+    .submit:hover {
+        background-color: #8d2121;
+        
+    }
+    .details{
+        margin-right: 300px;
+    }
+
+    .flash {
+        background-color: #fff1ca;
+        position: relative;
+        left: -4;
+        width: 65%;
+        border-radius: 4px;
+        padding-left: 2em;
+        p{
+            color: #a18b4e;
+        }
+    }
+    .card-footer {
+        width: 100%;
+    
+    }
+    
+    hr {
+        width: 80%;
+        border-radius: 5px;
+    }
+    
+
+
+.card {
+    width: 30%;
+	max-width: 300px;
+	min-width: 300px;
+    border: 1px solid white;
+    background-color: #fffbfb;
+    
+
+}
+ 
+.card-header {
+
+	width: 100%;
+
+}  
+.card-body {
+
+	padding: 1em 0;
+	display: grid;
+	place-content: center;
+    padding-left: 3em;
+
+
+
+}
+.form-content {
+	padding: 3em 0;
+	display: grid;
+	place-content: center;
+}
+
+
+.body-container{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    place-items: center;
+
+
+    img {
+        width: 30%;
+        min-width: 100px;
+        max-width: 100px;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        .book-details {
+            padding: 0 5em;
+            width:30%;
+        }
+        .read-book {
+            border: 1px solid red;
+            .button {
+                width: 100%;
+                text-align: left;
+        
+                }
+         }
+    }
+}
+.alone {
+    width: 51%;
+}

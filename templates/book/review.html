@@ -2,11 +2,14 @@
 
 {% block title %} review {% endblock %}
 
+{% block header %} 
+
+{% block logout %} Sign out {% endblock %}
+{% block user %} User: {{name.name}} {% endblock %}
+    
+{% endblock %}
 {% block body %} 
-<ul>
-  <li><a href="{{ url_for('logout')}}">logout</a></li>
-  <li>{{name.name}} {{name.surname}}</li>
-</ul>
+
 
     <h>{{details}}</h>
     <hr>
