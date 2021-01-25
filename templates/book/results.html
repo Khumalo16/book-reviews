@@ -11,13 +11,27 @@
 
 {% block body %} 
     {% for book in books %}
-    <div class="results">
-        <vid class="inner-results">
-            <ul>  
+    <section>
+        <div class="body-container">
+            <div class="book-pic">
                 <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
-                <li> {{book.title}} : {{book.author}} : {{book['isbn']}} : {{book.year}}</li>
-            </ul>
-        </vid>
-    </div>
+            </div>
+            <div class="book-details">
+                <h4>{{book.title}}</h4> 
+                <h5>({{book.author}})</h5>
+                <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
+            </div>
+            <div class="read-book">
+                <div>
+                    <form  action="/details/{{book['isbn']}}" method="post">
+                        <button type="submit" class="button"> Book's details</button>
+                    </form>
+                </div>
+            </div> 
+            <div class="div"><hr></div>
+        </div>
+        
+    </section>
+
     {% endfor %}
 {% endblock %}

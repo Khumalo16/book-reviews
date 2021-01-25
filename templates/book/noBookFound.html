@@ -3,7 +3,24 @@
 {% block title %} no book found {% endblock %}
 
 {% block link %} <link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}"> {% endblock %}
-
+{% block style %}
+   <style>
+      section{
+         padding: 300px 0;
+      }
+      div {
+         width: 40%;
+         margin: 0 auto;
+         display: grid;
+         place-items: center;
+      }
+      h1{
+         color: rgb(255, 0, 0);
+         height: 100%;
+         font-size: 300%;
+      }
+   </style>
+{% endblock %}
 {% block header %} 
 
 {% block logout %} Sign out {% endblock %}
@@ -13,17 +30,10 @@
 {% endblock %}
 
 {% block body %} 
-
-<link rel="stylesheet" href="{{ url_for('static',filename='styles.css')}}">
-
-   <div class="input-group">
-      <div class="form-outline">
-         <form action="{{ url_for('book')}}" method="post">
-            <img src="{{ url_for('static', filename='search.jpg') }}" class="search-icon">
-            <input type="search"  class="inputText" name="book"  placeholder="search..."/>
-         </form> 
-      </div>
+<section>
+   <div>
+      <h1>No book match with your search...</h1>
    </div>
+</section>
 
-<h>No book found</h>
 {% endblock %}

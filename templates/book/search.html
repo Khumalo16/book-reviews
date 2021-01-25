@@ -17,19 +17,21 @@
                 <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
             </div>
             <div class="book-details">
-                <h1>{{book.title}}</h1> 
-                <h3>({{book.author}})</h3>
-                <h6> ISBN: {{book.isbn}} - Released: {{book.year}}</h6>
-                <form action="/details/{{book['isbn']}}" method="post">
-                    <button type="submit" class="button">Review this book</button>   
-                </form>
+                <h4>{{book.title}}</h4> 
+                <h5>({{book.author}})</h5>
+                <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
             </div>
-            <div class="goodreads">
-
-            </div>
+            <div class="read-book">
+                <div>
+                    <form  action="/details/{{book['isbn']}}" method="post">
+                        <button type="submit" class="button"> Book's details</button>
+                    </form>
+                </div>
+            </div> 
+            <div class="div"><hr></div>
         </div>
-        <hr class="alone">
     </section>
+
 
     {% endfor %}
 {% endblock %}

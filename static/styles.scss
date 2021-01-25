@@ -10,6 +10,7 @@ body {
     margin: 0;
     list-style: noe;
     text-decoration: none;
+    text-align: center;
 }
 
 section {
@@ -156,21 +157,22 @@ header {
       height: 50%;
     }
 }
-
-
-
  .user, .key {
-            width: 25px; 
-           
-            
+    width: 25px;            
 } 
 
-
+.direct {
+    width: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    desc {
+        width: 50%;
+    }
+}
 
 .card {
-      
  
-   
     color: #524949;
     border-radius: 9px;
 
@@ -339,31 +341,225 @@ header {
     margin: 0 auto;
     display: flex;
     place-items: center;
+    background-color: rgb(145, 139, 139);
 
 
     img {
         width: 30%;
         min-width: 100px;
         max-width: 100px;
+
+    }
+    .book-details {
+        padding: 0 5em;
+        width:30%;
     }
 
-    .about {
-        display: flex;
-        flex-direction: column;
-        .book-details {
-            padding: 0 5em;
-            width:30%;
+    .div {
+        width: 70%;
+        hr {
+            width:100%;
+            color:#1c6629
         }
-        .read-book {
-            border: 1px solid red;
-            .button {
-                width: 100%;
-                text-align: left;
-        
-                }
-         }
+    }
+  
+}
+
+.read-book {
+    .button {
+        text-align: left;
+     }
+}
+
+@media (max-width:550px){
+  
+    .body-container {
+        width: 90%;
+        flex-direction: column;
+        text-align: center;
+        div {
+            .review-flex {
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(102, 165, 82);
+            }
+        } 
     }
 }
-.alone {
-    width: 51%;
+.rating {
+    width: 10%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row-reverse;
+    input {
+        display: none;    
+    }
+    label::before {
+        content: '\f005';
+        font-family: fontAwesome;
+        display: none;
+    }
+    label::after {
+        content: '\f005';
+        font-family: fontAwesome;
+        color: #616159;
+     
+    }
+    label:hover::after {
+        color: #cc5b10;
+    }
+    input:checked ~ label::after, label:hover ~ label::after{
+        color: #cc5b10;  
+    }
+    
+}
+
+.review-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.whole-container {
+    width:70%;
+    display: flex;
+    margin: 50px auto;
+    border: 1px solid red;
+    .left {
+        width: 70%;
+        place-content: center;
+        border: 1px solid red;
+        margin: 0 auto;
+        .top {
+
+            display: flex;
+            place-items: center;
+            .book-pic {
+                width: 100%;
+                img {
+                    width: 100%;
+                    max-width: 225px;
+                    min-width: 225px;
+                }
+            }
+            .book-details {
+                width: 50%;
+            }
+
+        }
+    }
+    @media (max-width:1170px) {
+        .top {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+        }
+    }
+    @media (max-width:1000px) {
+     
+        .rate-box {
+            display: flex;
+            flex-direction: column;
+         
+        }
+        #star1 {
+            left: 70px;
+        }
+        textarea {
+            width: 40px;
+        }
+    }
+    .right {
+        width: 30%;
+        border: 1px solid rgb(135, 136, 135);
+        border-bottom: none;
+        border-top: none;
+        border-right: none;
+        .rate-box {
+
+            display: flex;
+            place-items: center;
+        
+            .rate-number {
+                width: 20%;
+                
+                display: flex;
+                place-items: center;
+                .rating {
+                    #star {
+                        width: 40px;
+                        color: #1c6629;
+                    }
+                }
+            }
+            .align {
+                width: 80%;
+                max-width: 300px;
+                min-width: 300px;
+                .inner-box {
+        
+                    display: flex;
+                    width: 100%;
+        
+                    .number {
+                        width: 2%;
+                        position: relative;
+                        top: -11px;
+
+        
+                    }
+                    .perc {
+                        margin: 1em 1em;
+                        width: 50%;
+                        min-width: 40px;
+                        height: 6px;
+                        border: 1px solid gray;
+                        position: relative;
+                        top: -8;
+                        border-radius: 4px;            
+                        .level {
+                            width: 90%;
+                            border: 3px solid #cc5b10;
+                        }
+                    }
+                }
+            }
+        }
+
+        .submit-review {
+            margin: 0 auto;
+            width: 100%;
+            textarea {
+                width: 100%;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding: 0 10px;
+                outline: none;
+                margin-bottom: 20px;
+                margin-top: 45px;
+                border-radius: 4px;
+                color: #2e2828;
+                min-width: 320px;
+            }
+            button {
+                margin: 0 5px;
+                float: right;
+            }
+        }
+    }
+}
+@media (max-width:630px) {
+
+    .whole-container {
+       width: 90%;
+       flex-direction: column;
+       text-align: center;
+    }
+}
+#star1 {
+
+       position: relative;
+       left: 50px
+
+    
 }

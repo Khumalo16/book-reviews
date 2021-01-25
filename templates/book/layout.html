@@ -28,14 +28,22 @@
 				</div>
 				<div class="logs">
 					<ul> 
-						<li><a href="#">{% block login %} {% endblock %}</a></li>
-						<li><a href="#">{% block logout %} {% endblock %}</a></li>
-						<li><a href="#">{% block join %} {% endblock %}</a></li>
+						<li><a href="{{ url_for('index')}}">{% block login %} {% endblock %}</a></li>
+						<li><a href="{{ url_for('logout')}}">{% block logout %} {% endblock %}</a></li>
+						<li><a href="{{ url_for('registration')}}">{% block join %} {% endblock %}</a></li>
 						<li><a href="#"> {% block user %} {% endblock %}</a></li>
 					</ul>
 				</div>
 			</div>
+			<div class="direct">
+				<div class="desc">
+					<p>Search by any kind of related text of the book</p>
+				</div>
+			</div>
 		</header>
+
+		
+		
 		{% block body %} {% endblock %}
 </body>
 </html>

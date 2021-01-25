@@ -23,10 +23,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database
-engine = create_engine("postgresql://hhlfjdydmhizma:f2137338537e4dd691d12095ab2abf893b8bfca7b2b72d74a260c27367a6111a@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d4edp75p3661vk")
+engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-isbn = db.execute("SELECT id, isbn, title,author, year FROM books WHERE id = 2").fetchone()
 @app.route("/")
 def index1():
     return render_template('book/index.html')
@@ -97,19 +96,17 @@ def login():
     user = user_id[0]
     select = "SELECT name, surname FROM users WHERE id = :id"
     name = db.execute(select, {"id": user}).fetchone()
-    select = "SELECT title, isbn, year, author FROM books LIMIT 100"
+    select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 40"
     books = db.execute(select).fetchall()
-    apikey = "{apikey}"
-    goodreads = goodread("https://www.googleapis.com/books/v1/volumes")
     return render_template('book/search.html',name=name, books=books)
 
 @app.route("/search", methods=["GET"])
 def check():
     if session.get("user_id") is not None:
-        select = "SELECT name, surname FROM users WHERE id = :id"
-        user = session["user_id"]
+        select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 40"
+        books = db.execute(select).fetchall()
         name = db.execute(select, {"id": user}).fetchone()
-        return render_template('book/search.html',name=name)
+        return render_template('book/search.html',name=name,books=books)
 
     return redirect(url_for('index'))
 
@@ -139,7 +136,6 @@ def book():
         if not session.get("getbook"):
             return render_template('book/noBookFound.html',name=name)
 
-       
     return render_template('book/results.html', books=session.get("getbook"),name=name)
 
 @app.route("/details/<string:isbn>", methods=["POST","GET"])
@@ -153,38 +149,42 @@ def details(isbn):
     user_id = session["user_id"]
     isbn_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
     isbn_id = isbn_id[0]
-    details = db.execute("SELECT isbn, title, author, year FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
+    book = db.execute("SELECT isbn, title, author, year FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
     select = "SELECT name, surname, reviews, time, rate, realtime FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id"
     reviews = db.execute(select, {"isbn_id":isbn_id}).fetchall()
     print(reviews)
-    rates = []
-    for rate in range(1,6):
-        rates.append(rate)
-        rate+=1
+  
     select = "SELECT name, surname FROM users WHERE id = :id"
     user = session["user_id"]
     name = db.execute(select, {"id": user}).fetchone()
-    return render_template('book/review.html', details=details, reviews=reviews,rates=rates,name=name)
+    return render_template('book/review.html', book=book, reviews=reviews, name=name)
 
 
-@app.route("/review", methods=["POST", "GET"])
+@app.route("/review", methods=["POST"])
 def review():
     if session.get("user_id") is None:
         return redirect(url_for('index'))
 
     if request.method == "POST":
+        if request.form.get("cancel"):
+            return redirect(('details/' + session["isbn"]))
         user_id = session["user_id"]
         isbn = session["isbn"]
-        rate = int(request.form.get("rate"))
+        rate = 0
+        for i in range(0,6):
+            if request.form.get("star"+str(i)+"") is not None:
+                rate = i
+            i = + 1
         review = request.form.get("reviews")
         today = date.today()
         now = datetime.now()
         now = str(now.hour) +":" + str(now.minute)
         time = today.strftime("%b %d ,%Y")
 
-        if review is None:
-            flash("Write something if you would like to review on this book!")
-            return redirect(('details/' + isbn))
+        if review is None or review == "":
+            if rate == 0:
+                flash(" Write any comment or rate the book instead")
+                return redirect(('details/' + isbn))
         
         # check if the book has reviewed already
         isbn_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
@@ -201,7 +201,7 @@ def review():
         else:
             timereviewed = reviewed.time
             now = reviewed.realtime
-            flash("You've reviewed this book date " + timereviewed + " at "+ now)
+            flash("You've reviewed this book on " + timereviewed + " at "+ now)
             return redirect(('details/' + isbn))
     return redirect(('book' + isbn))
 
@@ -245,9 +245,12 @@ def api(isbn):
         "average":reviews.avg
     })
     
-def goodread(url_isbn):
-    res = requests.get(url_isbn)
+def goodread(isbn):
+    res = requests.get("https://www.goodreads.com/book/review_counts.json",
+    params={"key": "4qQ33gRusyHcS7NP277GQ", "isbns": isbn})
+
     if res.status_code != 200:
-        raise Exception("ERROR: API request unsuccessful")
+        raise Exception("Error: API request unsuccessful.")
     data = res.json()
-    return data
+    rate = data["books"][0]["work_ratings_count"]
+    return rate

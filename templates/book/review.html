@@ -10,29 +10,105 @@
 {% endblock %}
 {% block body %} 
 
-
-    <h>{{details}}</h>
-    <hr>
-    
-    <form action="{{ url_for('review')}}" method="POST">
-      <input type="text" name="reviews">
-     
-      <select name="rate" list="rate">
-        {% for rate in rates %}
-        <datalist>
-            <option value="{{rate}}" name>{{rate}}</option>
-        </datalist>
-        {% endfor %}
-      </select>
-      <input type="submit"> 
-    </form>
-    <h1>{{reviews}}</h1>
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-          {% for msg in messages %}
-          <p> {{msg}}</p>
-          {% endfor %}
-      {% endif %}
-    {% endwith %}
+    <div class="whole-container">
+      <div class="left">
+        <div class="top">
+          <div class="book-pic">
+            <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
+          </div>
+          <div class="book-details">
+            <h3>{{book.title}}</h3> 
+            <h5 >({{book.author}})</h5>
+            <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
+          </div>
+        </div>
+        <div class="bottom">
+            <p>My favorite books Love it !!!!</p>
+        </div>
+      </div>
+      <div class="right">
+        <div class="rate-box">
+          <div class="rate-number">
+            <h1>4.5</h1>
+          </div>
+          <div class="align">
+              <div class="inner-box">
+                  <div class="number">
+                    <p>5</p>  
+                  </div>
+                  <div class="perc">
+                      <div class="level">
+                      </div>
+                    </div>
+                </div>
+              <div class="inner-box">
+                  <div class="number">
+                    <p>4</p>  
+                  </div>
+                  <div class="perc">
+                      <div class="level">
+                          
+                      </div>
+                  </div>
+              </div>
+              <div class="inner-box">
+                  <div class="number">
+                    <p>3</p>  
+                  </div>
+                  <div class="perc">
+                      <div class="level">
+                          
+                      </div>
+                  </div>
+              </div>
+              <div class="inner-box">
+                  <div class="number">
+                    <p>2</p>  
+                  </div>
+                  <div class="perc">
+                      <div class="level">
+                          
+                      </div>
+                  </div>
+              </div>
+              <div class="inner-box">
+                  <div class="number">
+                    <p>1</p>  
+                  </div>
+                  <div class="perc">
+                      <div class="level">   
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+       
+        <div class="submit-review">
+          <form action="{{ url_for('review')}}" method="POST">
+            <div class="rating">
+              <input type="radio" name="star5" id="star1"><label for="star1" id="star1"></label>
+              <input type="radio" name="star4" id="star2"><label for="star2" id="star1"></label>
+              <input type="radio" name="star3" id="star3"><label for="star3" id="star1"></label>
+              <input type="radio" name="star2" id="star4"><label for="star4" id="star1"></label>
+              <input type="radio" name="star1" id="star5"><label for="star5" id="star1"></label>
+            </div>
+            <textarea name="reviews" id="text" placeholder="Add a review"></textarea>
+            <button type="submit" name="save">Save</button>
+         
+          </form>
+        </div>
+        <div class="reviewed">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for msg in messages %}
+            <div class="flash"><p> {{msg}}</p></div>
+            {% endfor %}
+              {% endif %}
+            {% endwith %}
+        </div>
+        <div class="comment">
+        </div>
+      </div>
+    </div>
+ 
 {% endblock %}
