@@ -4,6 +4,8 @@ $cardshadow: #ecf1f8;
 $input: rgba(103, 14, 172, 0.133);
 $form: #91b8f3;
 $submit: #700d0d;
+$star_before: #dadad6;
+$star_after: #cc5b10;
 
 
 body {
@@ -388,28 +390,29 @@ header {
 }
 .rating {
     width: 10%;
-    border: 1px solid black;
     display: flex;
     flex-direction: row-reverse;
     input {
         display: none;    
     }
-    label::before {
+    .label::before {
         content: '\f005';
         font-family: fontAwesome;
         display: none;
     }
-    label::after {
+    .label::after {
         content: '\f005';
         font-family: fontAwesome;
-        color: #616159;
+        color: $star_before;
      
     }
-    label:hover::after {
-        color: #cc5b10;
+    .label:hover::after {
+        color: $star_after;
     }
-    input:checked ~ label::after, label:hover ~ label::after{
-        color: #cc5b10;  
+    .label:hover::after,
+    .label:hover ~ .label::after,
+    input:checked ~ .label::after {
+        color: $star_after;  
     }
     
 }
@@ -423,12 +426,19 @@ header {
     width:70%;
     display: flex;
     margin: 50px auto;
-    border: 1px solid red;
+
+    .right {
+        border: 1px solid rgb(135, 136, 135);
+        border-bottom: none;
+        border-top: none;
+        border-right: none;
+    }
+
     .left {
         width: 70%;
         place-content: center;
-        border: 1px solid red;
         margin: 0 auto;
+
         .top {
 
             display: flex;
@@ -444,10 +454,13 @@ header {
             .book-details {
                 width: 50%;
             }
-
         }
     }
     @media (max-width:1170px) {
+        .right {
+            border-left: none;
+            border-top: 1px solid rgb(135, 136, 135);
+         }
         .top {
             display: flex;
             flex-direction: column;
@@ -459,7 +472,7 @@ header {
         .rate-box {
             display: flex;
             flex-direction: column;
-         
+        
         }
         #star1 {
             left: 70px;
@@ -468,21 +481,21 @@ header {
             width: 40px;
         }
     }
-    .right {
-        width: 30%;
-        border: 1px solid rgb(135, 136, 135);
-        border-bottom: none;
-        border-top: none;
-        border-right: none;
+    .bottom {
+        width: 100%;
+        float: right;
         .rate-box {
 
             display: flex;
             place-items: center;
-        
+            width: 100%;
+            float: right;
+
+            background-color: rgb(218, 216, 230);
             .rate-number {
-                width: 20%;
+                float: right;
+                width: 100%;
                 
-                display: flex;
                 place-items: center;
                 .rating {
                     #star {
@@ -492,33 +505,42 @@ header {
                 }
             }
             .align {
-                width: 80%;
-                max-width: 300px;
-                min-width: 300px;
-                .inner-box {
-        
-                    display: flex;
+                height:3px;
+              
+                .float {
+                    float: right;
                     width: 100%;
+                    background-color: rgb(61, 39, 185);
+                }
+   
+                height: 10%;
+                .inner-box {
+   
+                    height: 20px;
+                    display: flex;
+                    width: 50%;
         
                     .number {
-                        width: 2%;
+                        width: 10%;
                         position: relative;
                         top: -11px;
-
-        
                     }
                     .perc {
                         margin: 1em 1em;
                         width: 50%;
-                        min-width: 40px;
+                        
                         height: 6px;
+                        background-color: $star_before;
                         border: 1px solid gray;
                         position: relative;
                         top: -8;
-                        border-radius: 4px;            
-                        .level {
-                            width: 90%;
-                            border: 3px solid #cc5b10;
+                        border-radius: 4px;     
+                        width: 90%;
+                        min-width: 200px;
+                        max-width: 200px;       
+                        .level { 
+                            border: 3px solid $star_before;
+                            width: 50%;
                         }
                     }
                 }
@@ -533,27 +555,86 @@ header {
                 border-top: none;
                 border-left: none;
                 border-right: none;
-                padding: 0 10px;
+                padding: 0;
                 outline: none;
                 margin-bottom: 20px;
                 margin-top: 45px;
                 border-radius: 4px;
                 color: #2e2828;
-                min-width: 320px;
+                min-width: 300px;
             }
             button {
                 margin: 0 5px;
                 float: right;
             }
         }
+
+        .comment {
+            text-align: left;
+
+            .comment-header {
+                display: flex;
+                place-items: center;
+                .circle {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background-color: #616159;
+                }
+                .next-to-circle {
+
+                    
+                    .star-time {
+                        display: flex;
+                       
+                        div {
+                            margin-right: .5em;
+                            .loopstar::before {
+                                content: "\f005";
+                                font-family: fontAwesome;
+                                color: #dadad6;
+                            }
+                            .img1 {
+                                position: relative;
+                                left: -96px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-@media (max-width:630px) {
+@media (max-width:900px) {
 
     .whole-container {
-       width: 90%;
+      
+       width: 95%;
        flex-direction: column;
        text-align: center;
+       place-items: center;
+       .align {
+        position: relative;
+        left: 10px;
+    }
+    }
+}
+@media (max-width:700px) {
+
+    .whole-container {
+
+       width: 95%;
+       flex-direction: column;
+       text-align: center;
+       place-items: center;
+       
+       .bottom {
+           width: 100%;
+       }
+       .align {
+        position: relative;
+        left: 10px;
+        }
     }
 }
 #star1 {

@@ -23,91 +23,81 @@
           </div>
         </div>
         <div class="bottom">
-            <p>My favorite books Love it !!!!</p>
+          <div class="rate-box">
+            <div class="rate-number">
+              <h1>{{rate.average|safe }}</h1>
+              <p>Star here</p>
+            </div>
+            <div class="float">
+              <div class="align">
+                {% set count = namespace(value=5) %}
+                {% for i in rate %}
+                <div class="inner-box">
+                  <div class="number">
+                    <p>{{count.value}}</p>  
+                  </div>
+                  <div class="perc">
+                    {{i|safe}}
+                    {% set count.value = count.value - 1 %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+         
+          <div class="submit-review">
+            <form action="{{ url_for('review')}}" method="POST">
+              <div class="rating">
+                <input type="radio" name="star5" id="star1"><label class="label" for="star1" id="star1"></label>
+                <input type="radio" name="star4" id="star2"><label class="label" for="star2" id="star1"></label>
+                <input type="radio" name="star3" id="star3"><label class="label" for="star3" id="star1"></label>
+                <input type="radio" name="star2" id="star4"><label class="label" for="star4" id="star1"></label>
+                <input type="radio" name="star1" id="star5"><label class="label" for="star5" id="star1"></label>
+              </div>
+              <textarea name="reviews" id="text" placeholder="Add a review"></textarea>
+              <button type="submit" name="save">Save</button>
+           
+            </form>
+          </div>
+          <div class="reviewed">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for msg in messages %}
+              <div class="flash"><p> {{msg}}</p></div>
+              {% endfor %}
+                {% endif %}
+              {% endwith %}
+          </div>
+          <div class="comment">
+
+            {% for review in reviews %}
+            
+            <div class="comment-header">
+              <div class="circle"></div>
+              <div class="next-to-circle">
+                <div class="name">
+                  <h9>{{review.name}} {{review.surname}}</h9>
+                </div>
+                <div class="star-time">
+                 
+                  <div class="time">
+                    <h9> {{review.time}} {{review.realtime}}</h9>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="comment-body">
+              <p>{{review.reviews}}</p>
+            </div>
+             
+            {% endfor %}
+          </div>
+  
         </div>
       </div>
       <div class="right">
-        <div class="rate-box">
-          <div class="rate-number">
-            <h1>4.5</h1>
-          </div>
-          <div class="align">
-              <div class="inner-box">
-                  <div class="number">
-                    <p>5</p>  
-                  </div>
-                  <div class="perc">
-                      <div class="level">
-                      </div>
-                    </div>
-                </div>
-              <div class="inner-box">
-                  <div class="number">
-                    <p>4</p>  
-                  </div>
-                  <div class="perc">
-                      <div class="level">
-                          
-                      </div>
-                  </div>
-              </div>
-              <div class="inner-box">
-                  <div class="number">
-                    <p>3</p>  
-                  </div>
-                  <div class="perc">
-                      <div class="level">
-                          
-                      </div>
-                  </div>
-              </div>
-              <div class="inner-box">
-                  <div class="number">
-                    <p>2</p>  
-                  </div>
-                  <div class="perc">
-                      <div class="level">
-                          
-                      </div>
-                  </div>
-              </div>
-              <div class="inner-box">
-                  <div class="number">
-                    <p>1</p>  
-                  </div>
-                  <div class="perc">
-                      <div class="level">   
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
-       
-        <div class="submit-review">
-          <form action="{{ url_for('review')}}" method="POST">
-            <div class="rating">
-              <input type="radio" name="star5" id="star1"><label for="star1" id="star1"></label>
-              <input type="radio" name="star4" id="star2"><label for="star2" id="star1"></label>
-              <input type="radio" name="star3" id="star3"><label for="star3" id="star1"></label>
-              <input type="radio" name="star2" id="star4"><label for="star4" id="star1"></label>
-              <input type="radio" name="star1" id="star5"><label for="star5" id="star1"></label>
-            </div>
-            <textarea name="reviews" id="text" placeholder="Add a review"></textarea>
-            <button type="submit" name="save">Save</button>
-         
-          </form>
-        </div>
-        <div class="reviewed">
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for msg in messages %}
-            <div class="flash"><p> {{msg}}</p></div>
-            {% endfor %}
-              {% endif %}
-            {% endwith %}
-        </div>
-        <div class="comment">
-        </div>
+        <p>My favorite books Love it !!!!</p> 
       </div>
     </div>
  

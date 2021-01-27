@@ -10,7 +10,7 @@ from datetime import timedelta, date, datetime
 
 app = Flask(__name__)
 Session(app)
-app.permanent_session_lifetime = timedelta(minutes=10)
+app.permanent_session_lifetime = timedelta(minutes=60)
 
 user = 0
 # Check for environment variable
@@ -152,12 +152,42 @@ def details(isbn):
     book = db.execute("SELECT isbn, title, author, year FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
     select = "SELECT name, surname, reviews, time, rate, realtime FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id"
     reviews = db.execute(select, {"isbn_id":isbn_id}).fetchall()
-    print(reviews)
-  
+
+    select = "WITH c AS (SELECT isbn_id ,rate, count(*) as cnt FROM reviews WHERE rate > 0 and isbn_id = :isbn_id GROUP BY isbn_id, rate ORDER BY rate desc) select 100.0* cnt/(SELECT SUM(cnt) FROM c ) as percentage FROM c"
+    percentage = db.execute(select,{"isbn_id":isbn_id}).fetchall()
+    select = "WITH a AS (WITH c AS (SELECT rate FROM reviews WHERE isbn_id = :isbn_id) SELECT count(*) FROM c GROUP BY rate) SELECT count(*) FROM a"
+    numberrated = db.execute(select, {"isbn_id": isbn_id}).fetchone()
+    select = "SELECT rate FROM reviews WHERE isbn_id = :isbn_id GROUP BY rate HAVING count(*) > 0 ORDER BY rate DESC"
+    numberorder = db.execute(select, {"isbn_id": isbn_id}).fetchall()
+    
+    leftside = '<div class="level" style = "border: 3px solid #cc5b10; width:'
+    rightside ='%; border-radius: 4px"></div>'
+
+ 
+   
+    i = 0
+    ratelist = [None] * 5
+
+    while i < numberrated[0]:
+        fulldiv = leftside + str(percentage[i][0] - 3)+ rightside
+        rate = Markup(fulldiv)
+        div = Markup(fulldiv)
+        ratelist[numberorder[i][0] - 1] = div
+        i +=1
+    j = 0
+    for i in ratelist:
+        if i is None:
+            ratelist[j] = Markup('<div></div>')
+        print("did not find NOne",ratelist)
+        j   +=1
+
+    ratelist = ratelist[:: -1]
+    reviews = reviews[:: -1]
     select = "SELECT name, surname FROM users WHERE id = :id"
     user = session["user_id"]
+
     name = db.execute(select, {"id": user}).fetchone()
-    return render_template('book/review.html', book=book, reviews=reviews, name=name)
+    return render_template('book/review.html', book=book, reviews=reviews, name=name,rate=ratelist)
 
 
 @app.route("/review", methods=["POST"])
@@ -189,7 +219,6 @@ def review():
         # check if the book has reviewed already
         isbn_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
         isbn_id = isbn_id[0]
-        print(isbn_id)
         select_user = "SELECT * FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE user_id = :user_id AND isbn_id = :isbn_id"
         
         reviewed = db.execute(select_user,{"user_id":user_id, "isbn_id": isbn_id}).fetchone()
@@ -202,8 +231,8 @@ def review():
             timereviewed = reviewed.time
             now = reviewed.realtime
             flash("You've reviewed this book on " + timereviewed + " at "+ now)
+            me = Markup('<div>Hello</div>')
             return redirect(('details/' + isbn))
-    return redirect(('book' + isbn))
 
 @app.route("/api/book_review/<string:isbn>", methods=["GET"])
 def api(isbn):
