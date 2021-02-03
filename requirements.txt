@@ -1,5 +1,6 @@
 Flask
 Flask-Session
 psycopg2-binary
+psycopg2
 SQLAlchemy
 gunicorn
