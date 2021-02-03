@@ -1,4 +1,4 @@
-Python
+Python==3.8.5
 Flask
 Flask-Session
 psycopg2-binary
