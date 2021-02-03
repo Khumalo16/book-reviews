@@ -230,7 +230,7 @@ def review():
         else:
             timereviewed = reviewed.time
             now = reviewed.realtime
-            flash("You've reviewed this book on " + timereviewed + " at "+ now)
+            flash("You reviewed this book in " + timereviewed + " at "+ now)
             me = Markup('<div>Hello</div>')
             return redirect(('details/' + isbn))
 

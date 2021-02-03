@@ -624,6 +624,10 @@ hr {
   left: -96px;
 }
 
+.whole-container .bottom .comment .comment-body {
+  padding-left: 3em;
+}
+
 @media (max-width: 900px) {
   .whole-container {
     width: 95%;
