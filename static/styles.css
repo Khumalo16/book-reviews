@@ -15,12 +15,13 @@ section {
 }
 
 header {
+  background-color: rgba(103, 14, 172, 0.133);
   border-bottom: 1px solid rgba(92, 6, 40, 0.133);
   border-top: 1px solid rgba(211, 12, 45, 0.133);
 }
 
 .header {
-  height: 10%;
+  height: 20%;
   width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,22 +29,28 @@ header {
   place-items: center;
   margin: 0 auto;
   place-items: center;
+  background-color: #524949;
 }
 
-.header .title {
+.header .panel {
+  width: 100%;
+  background-color: #2e2828;
+}
+
+.header .panel .title {
   display: -ms-grid;
   display: grid;
   place-items: center;
 }
 
-.header .input-group {
+.header .panel .input-group {
   display: -ms-grid;
   display: grid;
   place-items: center;
   outline: none;
 }
 
-.header .input-group .inputText {
+.header .panel .input-group .inputText {
   outline: none;
   border: none;
   background-color: transparent;
@@ -52,14 +59,13 @@ header {
   padding: 0.2em 1.5em;
 }
 
-.header .input-group .inline {
+.header .panel .input-group .inline {
   border: 1px solid #dddada;
   background-color: snow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   outline: none;
-  width: 100%;
   border-radius: 30px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -67,93 +73,79 @@ header {
   display: flex;
 }
 
-.header .input-group .inline button {
+.header .panel .input-group .inline button {
   background-color: transparent;
   border: none;
   outline: none;
 }
 
-.header .input-group .inline:hover {
+.header .panel .input-group .inline:hover {
   border: 1px solid rgba(103, 14, 172, 0.133);
   -webkit-box-shadow: 0 0 2px rgba(103, 14, 172, 0.133), 0 0 3px rgba(103, 14, 172, 0.133), 0 0 4px rgba(103, 14, 172, 0.133), 0 0 5px rgba(103, 14, 172, 0.133), 0 0 7px rgba(103, 14, 172, 0.133), 0 0 8px rgba(103, 14, 172, 0.133);
           box-shadow: 0 0 2px rgba(103, 14, 172, 0.133), 0 0 3px rgba(103, 14, 172, 0.133), 0 0 4px rgba(103, 14, 172, 0.133), 0 0 5px rgba(103, 14, 172, 0.133), 0 0 7px rgba(103, 14, 172, 0.133), 0 0 8px rgba(103, 14, 172, 0.133);
 }
 
-.header .panel {
-  width: 100%;
-}
-
-.header .logs {
-  max-width: 400px;
-  min-width: 400px;
+.header .panel .logs {
+  background-color: red;
   display: -ms-grid;
   display: grid;
-  place-items: center;
+  justify-items: center;
 }
 
-.header .logs ul {
+.header .panel .logs ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   list-style: none;
+  display: -ms-grid;
+  display: grid;
+  float: left;
 }
 
-.header .logs ul li {
+.header .panel .logs ul li {
   margin: 0 1em;
 }
 
-.header .logs ul li a {
+.header .panel .logs ul li a {
   text-decoration: none;
+  display: -ms-grid;
+  display: grid;
+  float: left;
 }
 
-.header .logs ul li a:hover {
+.header .panel .logs ul li a:hover {
   color: #e2b10d;
 }
 
-.header .user {
+.header .panel .user {
   width: 10%;
   color: #093245;
 }
 
-.header .search-icon {
+.header .panel .search-icon {
   width: 15px;
   position: relative;
   top: 1.37em;
   left: 0.3em;
 }
 
-.header .user-move {
+.header .panel .user-move {
   padding: 1em;
 }
 
-.header .logo {
+.header .panel .logo {
   color: #1c6629;
   font-weight: 20;
   font-size: 30;
   font-style: oblique;
 }
 
-.header .logo span {
+.header .panel .logo span {
   font-weight: 800;
 }
 
-.header .logo #p {
+.header .panel .logo #p {
   font-weight: 23;
-}
-
-@media (max-width: 750px) {
-  .header .logs ul {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .header .inputText {
-    min-width: 150px;
-  }
 }
 
 @media (max-width: 1380px) {
@@ -176,11 +168,20 @@ header {
         -ms-flex-direction: column;
             flex-direction: column;
     margin-bottom: 100px;
-  }
-  .header .logs {
+    display: -ms-grid;
+    display: grid;
     place-items: center;
-    max-width: 170px;
-    min-width: 170px;
+  }
+  .header .panel {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    background-color: #13c233;
+  }
+  .header .panel .logs {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
   }
   .title {
     width: 100%;
@@ -189,12 +190,6 @@ header {
   .input-group {
     width: 100%;
     place-items: center;
-  }
-}
-
-@media (max-width: 400px) {
-  header {
-    height: 50%;
   }
 }
 

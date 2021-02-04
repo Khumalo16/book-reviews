@@ -23,136 +23,126 @@ section {
 }
 
 header {
-
+    background-color: rgba(103, 14, 172, 0.133);
     border-bottom: 1px solid rgba(92, 6, 40, 0.133);
     border-top: 1px solid rgba(211, 12, 45, 0.133);
 }
 .header {
-    height: 10%;
+    height: 20%;
     width: 70%;
     display: flex;
     place-items: center;
     margin: 0 auto;
     place-items: center;
-
-    .title {
-        display: grid;
-        place-items: center;
-
-    }
-    .input-group {
-        display: grid;
-        place-items: center;
-
-        outline: none;  
-        .inputText {
-            outline: none;
-            border: none; 
-            background-color: transparent;
-            border-right: 1px solid rgb(221, 218, 218);
-            padding-left: 1.5em;
-            padding: 0.2em 1.5em;
-
+    background-color: #524949;
+    .panel {
+        width: 100%;
+        background-color: #2e2828;
+        .title {
+            display: grid;
+            place-items: center;
+    
         }
-        .inline {
-            border: 1px solid rgb(221, 218, 218);
-            background-color: hsl(0, 100%, 99%);
-            display: flex;
-            outline: none;
-            width: 100%;
-            border-radius: 30px;
-            align-items: center;
-            display: flex;
-            button {
-                background-color: transparent;
-                border: none;
+        .input-group {
+            display: grid;
+            place-items: center;
+    
+            outline: none;  
+            .inputText {
                 outline: none;
+                border: none; 
+                background-color: transparent;
+                border-right: 1px solid rgb(221, 218, 218);
+                padding-left: 1.5em;
+                padding: 0.2em 1.5em;
+    
             }
-          
-        }
-        .inline:hover {
-            border: 1px solid  rgba(103, 14, 172, 0.133);
-            box-shadow: 
-                        0 0 2px $input,
-                        0 0 3px $input,
-                        0 0 4px $input,
-                        0 0 5px $input,
-                        0 0 7px $input,
-                        0 0 8px $input,
-        }
-    }
-   .panel {
-       width: 100%;
-   }
-
-    .logs {
-        max-width: 400px;
-        min-width: 400px;
-          
-        display: grid;
-        place-items: center;
-
-
-       ul {
-            display: flex;
-            list-style: none;
-
-            li {
-                margin: 0 1em;
-                a {
-                    text-decoration: none;
+            .inline {
+                border: 1px solid rgb(221, 218, 218);
+                background-color: hsl(0, 100%, 99%);
+                display: flex;
+                outline: none;
+                
+                border-radius: 30px;
+                align-items: center;
+                display: flex;
+                button {
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
                 }
-                a:hover {
-                    color: #e2b10d;                }
+              
+            }
+            .inline:hover {
+                border: 1px solid  rgba(103, 14, 172, 0.133);
+                box-shadow: 
+                            0 0 2px $input,
+                            0 0 3px $input,
+                            0 0 4px $input,
+                            0 0 5px $input,
+                            0 0 7px $input,
+                            0 0 8px $input,
             }
         }
-    }
-    .user {
-        width: 10%;
-        color: #093245;
-    }
-    .search-icon {
-        width: 15px;
-        position: relative;
-        top: 1.37em;
-        left: 0.3em;
-    }
-
-    .user-move {
-        padding: 1em;
-    }
-    .logo {
-        color: #1c6629;
-        font-weight: 20;
-        font-size: 30;
-        font-style: oblique;
-        
-        span {
-            font-weight: 800;
-        }
-
-        #p {
-            font-weight: 23;
-           
-         }
+      
+    
+        .logs {
          
+            background-color: red;
+            display: grid;
+            justify-items: center;
+    
+    
+           ul {
+                display: flex;
+                list-style: none;
+                display: grid;
+                float: left;
+    
+                li {
+                    margin: 0 1em;
+                    a {
+                        text-decoration: none;
+                        display: grid;
+                float: left;
+                    }
+                    a:hover {
+                        color: #e2b10d;                }
+                }
+            }
+        }
+        .user {
+            width: 10%;
+            color: #093245;
+        }
+        .search-icon {
+            width: 15px;
+            position: relative;
+            top: 1.37em;
+            left: 0.3em;
+        }
+    
+        .user-move {
+            padding: 1em;
+        }
+        .logo {
+            color: #1c6629;
+            font-weight: 20;
+            font-size: 30;
+            font-style: oblique;
+            
+            span {
+                font-weight: 800;
+            }
+    
+            #p {
+                font-weight: 23;
+               
+             }
+             
+        }
     }
     
-
-    @media (max-width: 750px) {
-
-        .logs ul {
-            display: flex;
-            flex-direction: column;
-       
-          
-        }
-        .inputText{
-        
-            min-width: 150px;
-        }
-       
-    }
 }
 
 
@@ -162,23 +152,26 @@ header {
         flex-direction: column;
         text-align: center;
    
-        
     }
 }
 @media (max-width: 1100px) {
-    .panel {
-    }
+  
     .header {
        flex-direction: column;
        margin-bottom: 100px;
-
-       .logs {
+       display: grid;
+       place-items: center;
+       .panel {
+            display: grid;
+            place-items: center;
+            background-color: #13c233;
+         
+            .logs {
     
-        place-items: center;
-        max-width: 170px;
-        min-width: 170px;
-    }
-      
+               display: grid;
+               place-items: center;
+            }
+      }
        
     }
     .title {
@@ -193,11 +186,7 @@ header {
         place-items: center;
     }
 }
-@media (max-width: 400px) {
-    header {
-      height: 50%;
-    }
-}
+
  .user, .key {
     width: 25px;            
 } 
