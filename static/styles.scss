@@ -33,20 +33,17 @@ header {
     display: flex;
     place-items: center;
     margin: 0 auto;
+    place-items: center;
 
-   
     .title {
-        display: flex;
-        align-items: center;
-        width: 34%;
+        display: grid;
+        place-items: center;
 
-  
-       
-        
     }
     .input-group {
-        align-items: center;
-        width: 33%;    
+        display: grid;
+        place-items: center;
+
         outline: none;  
         .inputText {
             outline: none;
@@ -62,6 +59,7 @@ header {
             background-color: hsl(0, 100%, 99%);
             display: flex;
             outline: none;
+            width: 100%;
             border-radius: 30px;
             align-items: center;
             display: flex;
@@ -83,10 +81,17 @@ header {
                         0 0 8px $input,
         }
     }
-   
+   .panel {
+       width: 100%;
+   }
 
     .logs {
-       width: 33%;
+        max-width: 400px;
+        min-width: 400px;
+          
+        display: grid;
+        place-items: center;
+
 
        ul {
             display: flex;
@@ -139,6 +144,7 @@ header {
         .logs ul {
             display: flex;
             flex-direction: column;
+       
           
         }
         .inputText{
@@ -149,22 +155,42 @@ header {
     }
 }
 
-@media (max-width: 1360px) { 
+
+@media (max-width: 1380px) { 
     .logs ul {
         display: flex;
         flex-direction: column;
         text-align: center;
+   
+        
     }
 }
-@media (max-width: 750px) {
+@media (max-width: 1100px) {
+    .panel {
+    }
     .header {
-       display: flex;
        flex-direction: column;
        margin-bottom: 100px;
-       text-align: center;
+
+       .logs {
+    
+        place-items: center;
+        max-width: 170px;
+        min-width: 170px;
     }
-    .search-icon {
-        display: none;
+      
+       
+    }
+    .title {
+        
+        width: 100%;
+        place-items: center;
+   
+    }
+  
+    .input-group {
+        width: 100%;
+        place-items: center;
     }
 }
 @media (max-width: 400px) {

@@ -20,25 +20,32 @@
    <body>
 		<header>
 			<div class="header">
-				<div class="title">
-					<h class="logo">Books<span>Review</span></h>
-				</div>
-				<div class="input-group">
-					<form action="{{ url_for('book')}}" method="post">
-						<div class="inline">
-							<input type="search"  class="inputText" name="book"  placeholder="Search..."/>
-							<button><i class="fa fa-search"></i></button>
+				<div class="row panel">
+					<div class="col-md-4">
+						<div class="title">
+							<h class="logo">Books<span>Review</span></h>
 						</div>
-					</form> 
-				</div>
-		
-				<div class="logs">
-					<ul> 
-						<li><a href="{{ url_for('index')}}">{% block login %} {% endblock %}</a></li>
-						<li><a href="{{ url_for('logout')}}">{% block logout %} {% endblock %}</a></li>
-						<li><a href="{{ url_for('registration')}}">{% block join %} {% endblock %}</a></li>
-						<li><a href="#"> {% block user %} {% endblock %}</a></li>
-					</ul>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							<form action="{{ url_for('book')}}" method="post">
+								<div class="inline">
+									<input type="search"  class="inputText" name="book"  placeholder="Search..."/>
+									<button><i class="fa fa-search"></i></button>
+								</div>
+							</form> 
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="logs">
+							<ul> 
+								<li><a href="{{ url_for('index')}}">{% block login %} {% endblock %}</a></li>
+								<li><a href="{{ url_for('logout')}}">{% block logout %} {% endblock %}</a></li>
+								<li><a href="{{ url_for('registration')}}">{% block join %} {% endblock %}</a></li>
+								<li><a href="#"> {% block user %} {% endblock %}</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="direct">
