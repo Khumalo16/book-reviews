@@ -1,6 +1,6 @@
 {% extends "book/layout.html" %}
 
-{% block title %} results {% endblock %}
+{% block title %} <title>results</title>  {% endblock %}
 
 {% block header %} 
 
@@ -14,7 +14,7 @@
     <section>
         <div class="body-container">
             <div class="book-pic">
-                <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
+                <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" id="book-cover">
             </div>
             <div class="book-details">
                 <h4>{{book.title}}</h4> 

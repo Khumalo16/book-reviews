@@ -96,7 +96,7 @@ def login():
     user = user_id[0]
     select = "SELECT name, surname FROM users WHERE id = :id"
     name = db.execute(select, {"id": user}).fetchone()
-    select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 40"
+    select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 5"
     books = db.execute(select).fetchall()
     return render_template('book/search.html',name=name, books=books)
 

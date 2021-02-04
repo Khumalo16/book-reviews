@@ -1,6 +1,6 @@
 {% extends "book/layout.html" %}
 
-{% block title %} long in {% endblock %}
+{% block title %} <title>long in </title> {% endblock %}
 
 {% block style %} 
 	<style>
@@ -16,13 +16,13 @@
 <body>
 	<section>
 		<div class="container">
-			<div class="card">
-				<div class="card-header">
+			<div class="cards">
+				<div class="card-header-disable">
 					<h3 class="sign-in"> Sign In</h3>
 				</div>
 				<hr>
-				<div class="card-body">
-					
+				<div class="card-body card-body-disable">
+					<div class="out-flash">
 						{% with messages = get_flashed_messages() %}
 						{% if messages %}
 							{% for msg in messages %}
@@ -30,21 +30,19 @@
 							{% endfor %}
 								{% endif %}
 							{% endwith %}
-				
-					
-				
+					</div>
 					<div class="form-content">
 						<form action="{{ url_for('login')}}" method="post">
 							<p>Username:</p>
-							<input type="text" name="username" placeholder="Username" class="form-control">
+							<input type="text" name="username" placeholder="Username" class="inputs">
 							<p>Password:</p>
-							<input type="password" name="password" placeholder="Password" class="form-control">
+							<input type="password" name="password" placeholder="Password" class="inputs">
 							<button type="submit" name="submit" class="submit"> Sing-in</button>
 						</form>
 					</div>
 				</div>
 				<hr>
-				<div class="card-footer">
+				<div class="card-footer-disable">
 					<p class="warning">Don't have an account <a id="sign-up" href="{{ url_for('registrationPage')}}">Sign up</a></p>
 				</div>
 			</div>

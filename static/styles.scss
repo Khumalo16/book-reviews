@@ -7,12 +7,10 @@ $submit: #700d0d;
 $star_before: #dadad6;
 $star_after: #cc5b10;
 
-
 body {
     margin: 0;
-    list-style: noe;
+    list-style: none;
     text-decoration: none;
-    text-align: center;
 }
 
 section {
@@ -22,21 +20,18 @@ section {
 .container {
     display: grid;
     place-items: center;
-    border: 1px solid grey;
-  
 }
+
 header {
     background-color: rgba(103, 14, 172, 0.133);
     border-bottom: 1px solid rgba(92, 6, 40, 0.133);
-
     border-top: 1px solid rgba(211, 12, 45, 0.133);
 }
 .header {
     height: 10%;
     width: 70%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    place-items: center;
     margin: 0 auto;
 
    
@@ -52,26 +47,44 @@ header {
     .input-group {
         align-items: center;
         width: 33%;    
+        outline: none;  
         .inputText {
-            width: 100%;
-            padding: .4em 1em;  
             outline: none;
-            border-radius: 7px;   
-            border: 1px solid #c6ccd3;  
-            padding-left: 2.5em;
+            border: none; 
+            background-color: transparent;
+            border-right: 1px solid rgb(221, 218, 218);
+            padding-left: 1.5em;
+            padding: 0.2em 1.5em;
+
+        }
+        .inline {
+            border: 1px solid rgb(221, 218, 218);
+            background-color: hsl(0, 100%, 99%);
+            display: flex;
+            outline: none;
+            border-radius: 30px;
+            align-items: center;
+            display: flex;
+            button {
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+          
+        }
+        .inline:hover {
+            border: 1px solid  rgba(103, 14, 172, 0.133);
+            box-shadow: 
+                        0 0 2px $input,
+                        0 0 3px $input,
+                        0 0 4px $input,
+                        0 0 5px $input,
+                        0 0 7px $input,
+                        0 0 8px $input,
         }
     }
-    
-    .inputText:hover {
-        border: 1px solid  rgba(103, 14, 172, 0.133);
-        box-shadow: 
-                    0 0 2px $input,
-                    0 0 3px $input,
-                    0 0 4px $input,
-                    0 0 5px $input,
-                    0 0 7px $input,
-                    0 0 8px $input,
-    }
+   
+
     .logs {
        width: 33%;
 
@@ -173,12 +186,10 @@ header {
     }
 }
 
-.card {
+.cards {
  
     color: #524949;
     border-radius: 9px;
-
-    
     width: 100%;
     max-width: 300px;
     margin: 10px 4px;
@@ -207,6 +218,7 @@ header {
     .sign-in { 
     font-size: 20;
     padding-left: 2em;
+    padding-top: 1em;
 
     }
     #sign-up {
@@ -222,15 +234,15 @@ header {
     }
 }
    
-    .form-control  {
+    .inputs {
      
             border-radius: 20px;
             width: 65%;
             color: black;
-            width: 80%;
+            width: 90%;
             outline: none;
             margin: 0.8em 0;
-            padding: 0.8em 1.5em;
+            padding: 0.2em 1em;
             border: 1px solid #b2b6b6;
             
         }
@@ -282,27 +294,34 @@ header {
     .details{
         margin-right: 300px;
     }
-
-    .flash {
-        background-color: #fff1ca;
-        position: relative;
-        left: -4;
-        width: 65%;
-        border-radius: 4px;
-        padding-left: 2em;
-        p{
-            color: #a18b4e;
+    .out-flash {
+        padding-left: 3em;
+        .flash {
+            background-color: #fff1ca;
+            position: relative;
+            width: 80%;
+            border-radius: 4px;
+            padding-left: 2em;
+            p{
+                color: #a18b4e;
+            }
         }
     }
-    .card-footer {
+  
+    .card-footer-disable {
         width: 100%;
     
     }
     
-    hr {
-        width: 80%;
-        border-radius: 5px;
+    .div {
+        padding-left: 2.5em;
+        hr {
+            width: 80%;
+            border-radius: 5px;
+            
+        }
     }
+  
     
 
 
@@ -312,62 +331,71 @@ header {
 	min-width: 300px;
     border: 1px solid white;
     background-color: #fffbfb;
+    place-items: center;
     
 
 }
  
-.card-header {
-
+.card-header-disable {
+    place-items: center;
 	width: 100%;
 
 }  
-.card-body {
+.card-body{
 
 	padding: 1em 0;
 	display: grid;
 	place-content: center;
-    padding-left: 3em;
+    padding-left: 30em;
 
 
 
 }
 .form-content {
-	padding: 3em 0;
-	display: grid;
-	place-content: center;
+	padding: auto auto;
+    display: grid;
+    place-items: center;
+    padding-left: 1.9em;
+    p {
+        padding-left: 0.5em;
+    }
 }
-
+.sums {
+    width: 50%;
+    border: 1px solid rebeccapurple;
+    margin: 0 auto;
+}
 
 .body-container{
     width: 50%;
     margin: 0 auto;
     display: flex;
     place-items: center;
-    background-color: rgb(145, 139, 139);
 
-
-    img {
-        width: 30%;
-        min-width: 100px;
-        max-width: 100px;
-
-    }
     .book-details {
         padding: 0 5em;
-        width:30%;
-    }
+        width:20%;
+        max-width: 300px;
+        min-width: 300px;
+        font-size: 0.3px;
+        margin-left: 45em;
 
-    .div {
-        width: 70%;
-        hr {
-            width:100%;
-            color:#1c6629
-        }
     }
-  
+}
+.div {
+    width: 50%;
+    margin: 0 auto;
+    #line {
+        width: 60%;
+        padding-left: 69px; 
+    }
 }
 
+
 .read-book {
+    max-width: 150px;
+    min-width: 150px;
+    width: 20%;
     .button {
         text-align: left;
      }
@@ -444,7 +472,7 @@ header {
             display: flex;
             place-items: center;
             .book-pic {
-                width: 100%;
+                width: 30%;
                 img {
                     width: 100%;
                     max-width: 225px;
@@ -644,7 +672,16 @@ header {
 #star1 {
 
        position: relative;
-       left: 50px
+       left: 50px; 
+}
 
-    
+#book-cover {
+    width: 100px;
+}
+
+#h4 {
+       font-size: 55em;
+}
+#h5 {
+    font-size: 50em;
 }

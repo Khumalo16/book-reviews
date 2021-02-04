@@ -1,6 +1,6 @@
 {% extends "book/layout.html" %}
 
-{% block title %} Search {% endblock %}
+{% block title %} <title>Search</title> {% endblock %}
 
 {% block header %} 
 {% block logout %} Sign out {% endblock %}
@@ -12,27 +12,31 @@
 
    {% for book in books %}
     <section>
-        <div class="body-container">
-            <div class="book-pic">
-                <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" class="book-cover">
-            </div>
-            <div class="book-details">
-                <h4>{{book.title}}</h4> 
-                <h5>({{book.author}})</h5>
-                <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
-            </div>
-            <div class="read-book">
-                <div>
-                    <form  action="/details/{{book['isbn']}}" method="post">
-                        <button type="submit" class="button"> Book's details</button>
-                    </form>
+        <div class="sum">
+            <div class="body-container">
+                <div class="book-pic">
+                    <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" id="book-cover">
                 </div>
-            </div> 
-            <div class="div"><hr></div>
+                <div class="book-details">
+                    <h4 id="h4">{{book.title}}</h4> 
+                    <h5 id="h5">({{book.author}})</h5>
+                    <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
+                </div>
+                <div class="read-book">
+                    <div>
+                        <form  action="/details/{{book['isbn']}}" method="post">
+                            <button type="submit" class="button"> Book's details</button>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+            <div class="div">
+                <hr id="line">
+            </div>
+          
         </div>
+  
     </section>
-
-
     {% endfor %}
 {% endblock %}
 
