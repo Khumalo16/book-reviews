@@ -481,21 +481,32 @@ header {
         width: 70%;
         place-content: center;
         margin: 0 auto;
-
+        
         .top {
-
             display: flex;
             place-items: center;
+            margin: 10px;
+           
+          
             .book-pic {
-                width: 30%;
+                
+                place-items: center;
                 img {
                     width: 100%;
-                    max-width: 225px;
-                    min-width: 225px;
+                    max-width: 213px;
+                    min-width: 213px;
                 }
             }
             .book-details {
                 width: 50%;
+       
+                    padding: 0 5em;
+                    width:20%;
+                    max-width: 300px;
+                    min-width: 300px;
+                    font-size: 0.3px;
+                    margin-left: 45em;
+       
             }
         }
     }
@@ -528,7 +539,6 @@ header {
         width: 100%;
         float: right;
         .rate-box {
-
             display: flex;
             place-items: center;
             width: 100%;
@@ -566,7 +576,7 @@ header {
                     .number {
                         width: 10%;
                         position: relative;
-                        top: -11px;
+                        top: -1px;
                     }
                     .perc {
                         margin: 1em 1em;
@@ -708,10 +718,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  
-  space {
-      
-  }
+
     #welcome {
         font-size: 2rem;
         font-style: italic;
@@ -729,14 +736,13 @@ header {
       max-width: 250px;
       border: 2px solid rgb(70, 64, 64);
       margin: 20px;
-      margin-right: 300px;
+
   }
   .inputText1 {
     min-width: 100px;
-
     border: 2px solid rgb(70, 64, 64);
     margin: 20px;
-    margin-right: 300px;
+
 }
 
 .in {
