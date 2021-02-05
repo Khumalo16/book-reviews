@@ -21,20 +21,18 @@ header {
 }
 
 .header {
-  height: 20%;
   width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  place-items: center;
   margin: 0 auto;
   place-items: center;
-  background-color: #524949;
+  margin-top: 20px;
 }
 
 .header .panel {
   width: 100%;
-  background-color: #2e2828;
+  place-items: center;
 }
 
 .header .panel .title {
@@ -66,6 +64,7 @@ header {
   display: -ms-flexbox;
   display: flex;
   outline: none;
+  width: 100%;
   border-radius: 30px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -86,10 +85,8 @@ header {
 }
 
 .header .panel .logs {
-  background-color: red;
-  display: -ms-grid;
-  display: grid;
-  justify-items: center;
+  min-width: 150px;
+  max-width: 150px;
 }
 
 .header .panel .logs ul {
@@ -99,17 +96,15 @@ header {
   list-style: none;
   display: -ms-grid;
   display: grid;
-  float: left;
 }
 
 .header .panel .logs ul li {
-  margin: 0 1em;
+  margin: 0 auto;
 }
 
 .header .panel .logs ul li a {
   text-decoration: none;
-  display: -ms-grid;
-  display: grid;
+  vertical-align: middle;
   float: left;
 }
 
@@ -150,14 +145,10 @@ header {
 
 @media (max-width: 1380px) {
   .logs ul {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    text-align: center;
   }
 }
 
@@ -167,16 +158,12 @@ header {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    margin-bottom: 100px;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
   }
   .header .panel {
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
-    background-color: #13c233;
+    width: 100%;
+  }
+  .header .panel .inputText {
+    width: 100%;
   }
   .header .panel .logs {
     display: -ms-grid;
@@ -184,10 +171,6 @@ header {
     place-items: center;
   }
   .title {
-    width: 100%;
-    place-items: center;
-  }
-  .input-group {
     width: 100%;
     place-items: center;
   }
@@ -722,5 +705,83 @@ header {
 
 #h5 {
   font-size: 50em;
+}
+
+.register {
+  width: 80%;
+  border: 3px solid #151615;
+  background-image: -webkit-gradient(linear, right top, left top, from(#232b44), to(#551533));
+  background-image: linear-gradient(right, #232b44, #551533);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.register #welcome {
+  font-size: 2rem;
+  font-style: italic;
+  color: #1c6629;
+}
+
+.register #log {
+  text-decoration: none;
+}
+
+.register #log:hover {
+  text-decoration: underline;
+}
+
+.register .inputText {
+  min-width: 100px;
+  max-width: 250px;
+  border: 2px solid #464040;
+  margin: 20px;
+  margin-right: 300px;
+}
+
+.register .inputText1 {
+  min-width: 100px;
+  border: 2px solid #464040;
+  margin: 20px;
+  margin-right: 300px;
+}
+
+.register .in {
+  padding-left: 20px;
+}
+
+.register .in .btnSubmit {
+  padding: 5px;
+  width: 100px;
+}
+
+.register .error {
+  background-color: green;
+  width: 50%;
+}
+
+.register .error p {
+  font-size: 0.9rem;
+  color: #f2f2f8;
+}
+
+.register .label::before {
+  content: "*";
+  color: red;
+  position: relative;
+  top: -50px;
+  left: -24px;
+}
+
+@media (max-width: 840px) {
+  .register {
+    background-image: -webkit-gradient(linear, right top, left top, from(#232b44), to(#551533));
+    background-image: linear-gradient(right, #232b44, #551533);
+  }
+  .register .inputText1 {
+    max-width: 250px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

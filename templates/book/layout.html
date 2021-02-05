@@ -18,15 +18,16 @@
 	
   </head>
    <body>
+	{% block invisible %}
 		<header>
-			<div class="header">
-				<div class="row panel">
+			<div class="header .invisible">
+				<div class="row panel ">
 					<div class="col-md-4">
 						<div class="title">
 							<h class="logo">Books<span>Review</span></h>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 search-b">
 						<div class="input-group">
 							<form action="{{ url_for('book')}}" method="post">
 								<div class="inline">
@@ -54,6 +55,7 @@
 				</div>
 			</div>
 		</header>
+		{% endblock %}
 		{% block body %} {% endblock %}
 </body>
 </html>

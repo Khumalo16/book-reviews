@@ -1,6 +1,6 @@
 {% extends "book/layout.html" %}
 
-{% block title %} registration {% endblock %}
+{% block title %} <title>registration</title> {% endblock %}
 {% block style %} 
 	<style>
 		.header {
@@ -13,72 +13,76 @@
     <div class="container register">
         <div class="form">
             <div id="welcome"> Feel the form to join  </div>
-
             <div class="spit">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="form-content">
+                        <div class="form-content space">
                             <form action="{{ url_for('registration')}}" method="post">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" name="name" placeholder="First name *" class="form-control" required>
+                                            <input type="text" name="name" placeholder="First name" class="form-control inputText" required>
+                                            <label class="label" for="star1" id="star1"></label>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" name="surname" placeholder="Last name *" class="form-control" required>
+                                            <input type="text" name="surname" placeholder="Last name" class="form-control inputText" required>
+                                            <label class="label" for="star1" id="star1"></label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <div class="form-group">
-                                            <input type="text" name="username" placeholder="username or email or your phone number *" class="form-control" readonly 
+                                            <input type="text" name="username" placeholder="Username or Email or your phone number" class="form-control inputText1" readonly 
                                             onfocus="this.removeAttribute('readonly');" required>
+                                            <label class="label" for="star1" id="star1"></label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="password" name="password" placeholder="password *" class="form-control" autocomplete="off" readonly 
+                                            <input type="password" name="password" placeholder="Password" class="form-control inputText" autocomplete="off" readonly 
                                             onfocus="this.removeAttribute('readonly');" required>
+                                            <label class="label" for="star1" id="star1"></label>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="password" name="confirm" placeholder="confirm password *" class="form-control" autocomplete="off" readonly 
+                                            <input type="password" name="confirm" placeholder="Confirm password" class="form-control inputText" autocomplete="off" readonly 
                                             onfocus="this.removeAttribute('readonly');" required>
+                                            <label class="label" for="star1" id="star1"></label>
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit" name="submit" class="btnSubmit">
+                                <div class="error">
+                                    {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                            {% for msg in messages %}
+                                            <p> {{msg}}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="in">
+                                    <input type="submit" name="submit" class="btnSubmit">
+                                </div>
+                               
                             </form>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="login-text">
-                            <li><a href="{{ url_for('login')}}">login</a></li>
+                            <li><a id ="log" href="{{ url_for('login')}}">login instead</a></li>
                         </div>
-                        <div id="book">
-                           <img src="{{ url_for('static', filename='book.png')}}">
-                        </div>
-                        
                     </div>
                 </div>
             </div>
-            <div class="error">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for msg in messages %}
-                        <p> {{msg}}</p>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-            </div>
+            
         </div>
     </div>
 {% endblock %}
