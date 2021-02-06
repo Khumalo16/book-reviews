@@ -180,7 +180,8 @@ def details(isbn):
         div = Markup(fulldiv)
         ratelist[numberorder[i][0] - 1] = div
         i +=1
-    avg = avg/j
+    if j > 0:
+        avg = avg/j
     total_voted = int(j)
     print("did not find NOne"," and the avg", avg,numberorder)
     j = 0
