@@ -25,8 +25,9 @@
         <div class="bottom">
           <div class="rate-box">
             <div class="rate-number">
-              <h1>{{rate.average|safe }}</h1>
-              <p>Star here</p>
+          
+              <h1>{{avg}}</h1>
+              <p>Determined from vote of {{total_voted}} people </p>
             </div>
             <div class="float">
               <div class="align">
@@ -97,7 +98,31 @@
         </div>
       </div>
       <div class="right">
-        <p>My favorite books Love it !!!!</p> 
+        <h3>Favorite</h3> 
+       
+        {% for book in favorite %}
+        <section>
+        <div class="body-container">
+            <div class="book-pic">
+                <img id="fav" src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" id="book-cover">
+            </div>
+            <div class="book-details">
+                <h4>{{book.title}}</h4> 
+                <h5>({{book.author}})</h5>
+                <h6>  ISBN:  {{book.isbn}} - Released: {{book.year}}</h6>
+            </div>
+            <div class="read-book">
+                <div>
+                    <form  action="/details/{{book['isbn']}}" method="post">
+                        <button type="submit" class="button"> Book's details</button>
+                    </form>
+                </div>
+            </div> 
+            <div class="div"><hr></div>
+        </div>
+      </section>
+    {% endfor %}
+   
       </div>
     </div>
  

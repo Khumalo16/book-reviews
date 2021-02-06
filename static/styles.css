@@ -450,10 +450,46 @@ header {
 }
 
 .whole-container .right {
+  width: 30%;
   border: 1px solid #878887;
   border-bottom: none;
   border-top: none;
   border-right: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.whole-container .right .body-container {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.whole-container .right .body-container .book-details {
+  padding: 0 5em;
+  width: 100%;
+  max-width: 150px;
+  min-width: 150px;
+  font-size: 0.3px;
+  margin-left: 45em;
+}
+
+.whole-container .right .body-container .book-details h4 {
+  font-size: 1rem;
+}
+
+.whole-container .right .body-container .book-details h5 {
+  font-size: 0.9rem;
+}
+
+.whole-container .right .body-container .book-details h6 {
+  font-size: 0.8rem;
+}
+
+.whole-container .right .body-container #fav {
+  width: 80px;
 }
 
 .whole-container .left {
@@ -543,10 +579,17 @@ header {
 .whole-container .bottom .rate-box .rate-number {
   float: right;
   width: 100%;
+  display: -ms-grid;
+  display: grid;
   place-items: center;
 }
 
+.whole-container .bottom .rate-box .rate-number .rating {
+  border: 3px solid red;
+}
+
 .whole-container .bottom .rate-box .rate-number .rating #star {
+  margin-top: 5em;
   width: 40px;
   color: #1c6629;
 }
@@ -619,6 +662,10 @@ header {
   float: right;
 }
 
+.whole-container .bottom .submit-review .rating #star1 {
+  margin-top: 2em;
+}
+
 .whole-container .bottom .comment {
   text-align: left;
 }
@@ -631,9 +678,9 @@ header {
 }
 
 .whole-container .bottom .comment .comment-header .circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 40%;
   background-color: #616159;
 }
 

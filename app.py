@@ -150,16 +150,19 @@ def details(isbn):
     isbn_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
     isbn_id = isbn_id[0]
     book = db.execute("SELECT isbn, title, author, year FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
+    
     select = "SELECT name, surname, reviews, time, rate, realtime FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id"
     reviews = db.execute(select, {"isbn_id":isbn_id}).fetchall()
+    select = "SELECT title, isbn, author, year FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE user_id = :user_id"
 
+    favorite = db.execute(select, {"user_id":user_id}).fetchall()
     select = "WITH c AS (SELECT isbn_id ,rate, count(*) as cnt FROM reviews WHERE rate > 0 and isbn_id = :isbn_id GROUP BY isbn_id, rate ORDER BY rate desc) select 100.0* cnt/(SELECT SUM(cnt) FROM c ) as percentage FROM c"
     percentage = db.execute(select,{"isbn_id":isbn_id}).fetchall()
     select = "WITH a AS (WITH c AS (SELECT rate FROM reviews WHERE isbn_id = :isbn_id) SELECT count(*) FROM c GROUP BY rate) SELECT count(*) FROM a"
     numberrated = db.execute(select, {"isbn_id": isbn_id}).fetchone()
-    select = "SELECT rate FROM reviews WHERE isbn_id = :isbn_id GROUP BY rate HAVING count(*) > 0 ORDER BY rate DESC"
+    select = "SELECT rate, sum(rate) FROM reviews WHERE isbn_id = :isbn_id GROUP BY rate HAVING count(*) > 0 ORDER BY rate DESC"
     numberorder = db.execute(select, {"isbn_id": isbn_id}).fetchall()
-    
+    print(numberorder, "hhhhhhhhhhhhhhhhhhhhhhhhh")
     leftside = '<div class="level" style = "border: 3px solid #cc5b10; width:'
     rightside ='%; border-radius: 4px"></div>'
 
@@ -167,27 +170,33 @@ def details(isbn):
    
     i = 0
     ratelist = [None] * 5
-
+    avg = 0
+    j= 0
     while i < numberrated[0]:
         fulldiv = leftside + str(percentage[i][0] - 3)+ rightside
+        avg+= numberorder[i][1]
+        j += numberorder[i][1]/numberorder[i][0]
         rate = Markup(fulldiv)
         div = Markup(fulldiv)
         ratelist[numberorder[i][0] - 1] = div
         i +=1
+    avg = avg/j
+    total_voted = int(j)
+    print("did not find NOne"," and the avg", avg,numberorder)
     j = 0
     for i in ratelist:
         if i is None:
             ratelist[j] = Markup('<div></div>')
-        print("did not find NOne",ratelist)
-        j   +=1
-
+        
+        j +=1
+    
     ratelist = ratelist[:: -1]
     reviews = reviews[:: -1]
     select = "SELECT name, surname FROM users WHERE id = :id"
     user = session["user_id"]
 
     name = db.execute(select, {"id": user}).fetchone()
-    return render_template('book/review.html', book=book, reviews=reviews, name=name,rate=ratelist)
+    return render_template('book/review.html', book=book, reviews=reviews, name=name,rate=ratelist,avg=avg,total_voted=total_voted,favorite=favorite)
 
 
 @app.route("/review", methods=["POST"])
