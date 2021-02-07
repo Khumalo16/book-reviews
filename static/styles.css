@@ -836,4 +836,48 @@ header {
     max-width: 250px;
   }
 }
+
+#face {
+  width: 100px;
+  height: 100px;
+  background-color: #f3f3f3;
+  vertical-align: middle;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+#face #eyes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+#face #eyes #eye {
+  margin: 0 4px;
+  width: 60px;
+  height: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 2px solid #2e2828;
+  border-bottom: 0;
+}
+
+#face #eyes #eye #see {
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background-color: #686565;
+}
+
+#face #mouth {
+  width: 40px;
+  height: 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: 2px solid #2e2828;
+  border-bottom: 0;
+}
 /*# sourceMappingURL=styles.css.map */

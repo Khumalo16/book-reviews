@@ -124,7 +124,7 @@ def book():
     select = "SELECT name, surname FROM users WHERE id = :id"
     user = session["user_id"]
     name = db.execute(select, {"id": user}).fetchone()
-    select = "SELECT * FROM books WHERE isbn LIKE :isbn OR title LIKE :title OR author LIKE :author"
+    select = "SELECT * FROM books WHERE isbn ILIKE :isbn OR title ILIKE :title OR author ILIKE :author"
     
     if request.method == "POST":
         book = request.form.get("book")

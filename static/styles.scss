@@ -821,3 +821,40 @@ header {
         }
     }
 }
+
+#face {
+    width: 100px;
+    height: 100px;
+    background-color: #f3f3f3;
+    vertical-align: middle;
+    display: grid;
+    place-content: center;
+    #eyes {
+        display: flex;
+        margin-bottom: 30px ;
+        #eye {
+            margin: 0 4px;
+            width: 60px;
+            height: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border: 2px solid #2e2828;
+            border-bottom: 0;
+            #see {
+                width: 7px;
+                height: 7px;
+                margin-top: 5px;
+                border-radius: 50%;
+                background-color: #686565;
+            }
+        }
+    }
+    #mouth {
+        width: 40px;
+        height: 20px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border: 2px solid #2e2828;
+        border-bottom: 0;
+    }
+}
