@@ -668,6 +668,8 @@ header {
 
 .whole-container .bottom .comment {
   text-align: left;
+  margin-top: 100px;
+  margin-bottom: 20px;
 }
 
 .whole-container .bottom .comment .comment-header {
@@ -879,5 +881,19 @@ header {
   border-top-right-radius: 30px;
   border: 2px solid #2e2828;
   border-bottom: 0;
+}
+
+#flash {
+  margin-bottom: 20px;
+  margin-top: 70px;
+  background-color: #fff1ca;
+  min-width: 300px;
+  max-width: 300px;
+  border-radius: 4px;
+  padding-left: 2em;
+}
+
+#flash p {
+  color: #a18b4e;
 }
 /*# sourceMappingURL=styles.css.map */

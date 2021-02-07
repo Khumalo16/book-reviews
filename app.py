@@ -96,7 +96,7 @@ def login():
     user = user_id[0]
     select = "SELECT name, surname FROM users WHERE id = :id"
     name = db.execute(select, {"id": user}).fetchone()
-    select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 5"
+    select = "SELECT title, isbn, year, author FROM books ORDER BY RANDOM() LIMIT 25"
     books = db.execute(select).fetchall()
     return render_template('book/search.html',name=name, books=books)
 
@@ -151,7 +151,7 @@ def details(isbn):
     isbn_id = isbn_id[0]
     book = db.execute("SELECT isbn, title, author, year FROM books WHERE isbn = :isbn",{"isbn": isbn}).fetchone()
     
-    select = "SELECT name, surname, reviews, time, rate, realtime FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id"
+    select = "SELECT name, surname, reviews, time, rate, realtime FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE isbn_id = :isbn_id AND LENGTH(reviews) > 0"
     reviews = db.execute(select, {"isbn_id":isbn_id}).fetchall()
     select = "SELECT title, isbn, author, year FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE user_id = :user_id"
 
@@ -162,7 +162,6 @@ def details(isbn):
     numberrated = db.execute(select, {"isbn_id": isbn_id}).fetchone()
     select = "SELECT rate, sum(rate) FROM reviews WHERE isbn_id = :isbn_id GROUP BY rate HAVING count(*) > 0 ORDER BY rate DESC"
     numberorder = db.execute(select, {"isbn_id": isbn_id}).fetchall()
-    print(numberorder, "hhhhhhhhhhhhhhhhhhhhhhhhh")
     leftside = '<div class="level" style = "border: 3px solid #cc5b10; width:'
     rightside ='%; border-radius: 4px"></div>'
 
@@ -173,17 +172,20 @@ def details(isbn):
     avg = 0
     j= 0
     while i < numberrated[0]:
-        fulldiv = leftside + str(percentage[i][0] - 3)+ rightside
-        avg+= numberorder[i][1]
-        j += numberorder[i][1]/numberorder[i][0]
-        rate = Markup(fulldiv)
-        div = Markup(fulldiv)
-        ratelist[numberorder[i][0] - 1] = div
+        if not percentage:
+            pass
+        else:
+            fulldiv = leftside + str(percentage[i][0] - 3)+ rightside
+            avg+= numberorder[i][1]
+            j += numberorder[i][1]/numberorder[i][0]
+            rate = Markup(fulldiv)
+            div = Markup(fulldiv)
+            ratelist[numberorder[i][0] - 1] = div
         i +=1
     if j > 0:
         avg = avg/j
     total_voted = int(j)
-    print("did not find NOne"," and the avg", avg,numberorder)
+
     j = 0
     for i in ratelist:
         if i is None:
@@ -204,10 +206,11 @@ def details(isbn):
 def review():
     if session.get("user_id") is None:
         return redirect(url_for('index'))
-
+   
     if request.method == "POST":
         if request.form.get("cancel"):
             return redirect(('details/' + session["isbn"]))
+        
         user_id = session["user_id"]
         isbn = session["isbn"]
         rate = 0
@@ -223,6 +226,7 @@ def review():
 
         if review is None or review == "":
             if rate == 0:
+                
                 flash(" Write any comment or rate the book instead")
                 return redirect(('details/' + isbn))
         
@@ -241,8 +245,22 @@ def review():
             timereviewed = reviewed.time
             now = reviewed.realtime
             flash("You reviewed this book in " + timereviewed + " at "+ now)
-            me = Markup('<div>Hello</div>')
             return redirect(('details/' + isbn))
+
+@app.route("/popular")
+def popular():
+    if session.get("user_id") is None:
+        return redirect(url_for('index'))
+   
+    user = session["user_id"]
+    select = "SELECT name, surname FROM users WHERE id = :id"
+    name = db.execute(select, {"id": user}).fetchone()
+    select = "SELECT title, isbn, author, year FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE user_id = :user_id"
+
+    books = db.execute(select,{"user_id": user}).fetchall()
+    select = "SELECT title, isbn, author, year FROM reviews JOIN users ON users.id = reviews.user_id JOIN books ON books.id = reviews.isbn_id WHERE user_id = :user_id"
+
+    return render_template('book/search.html',name=name, books=books)
 
 @app.route("/api/book_review/<string:isbn>", methods=["GET"])
 def api(isbn):

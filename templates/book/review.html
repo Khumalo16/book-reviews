@@ -58,6 +58,8 @@
               </div>
               <textarea name="reviews" id="text" placeholder="Add a review"></textarea>
               <button type="submit" name="save">Save</button>
+              <button type="submit" name="cancel">Cancel</button>
+              
            
             </form>
           </div>
@@ -65,7 +67,7 @@
             {% with messages = get_flashed_messages() %}
             {% if messages %}
               {% for msg in messages %}
-              <div class="flash"><p> {{msg}}</p></div>
+              <div id="flash"><p> {{msg}}</p></div>
               {% endfor %}
                 {% endif %}
               {% endwith %}
