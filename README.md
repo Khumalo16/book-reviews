@@ -26,7 +26,7 @@ where __testName__ is the name of the test case
 
 # Run with testcases
     Similarily, open terminal and navigete to the impact directory.
-    and use the provided rushtests.sh srcipt file as follows (This script is designed for Linux users):
+    Use the provided rushtests.sh srcipt file as follows (This script is designed for Linux users):
     
         ./runtests.sh
 
