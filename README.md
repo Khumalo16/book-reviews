@@ -30,8 +30,8 @@ Similarily open terminal and navigete to the impact directory and use the provid
 
 ***Note: If You wish to include more testcases, include them in the testcases folder as well as their corresponding suggested output***
 
-# Libraires:
-Imported libreies included:
+# Libraires
+    Imported libreies included:
         java.util.ArrayList
         java.util.Collection
         java.util.Iterator
