@@ -4,7 +4,7 @@ In this context, a sequence is defined as two consecutive numbers with an interv
 
 ## Input structure
 The input contains multple test cases. The first line of the input contains the integer N, the number of test cases, whete 0<N<= 2^31.
-This is follwed my M integer [F_1, F_2,....,F_M], where [-2^31<=F_i<= 2^31]. The integers are seperated by a single comma. An empty line is ignored in the input.
+This is follwed my M integer $`F_1, F_2,....,F_M`$, where [-2^31<=F_i<= 2^31]. The integers are seperated by a single comma. An empty line is ignored in the input.
     
 
 ## Output structure
