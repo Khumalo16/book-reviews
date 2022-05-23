@@ -22,7 +22,7 @@ Extract impact.zip file. Open the extract folder. You can run the program manual
     Open terminal and navigate to the extracted impact directory and excecute the followeing command:
         javac numberrangesummarizer/*.java 
         java numberrangesummarizer.Main<testcases/testName.txt
-    where __testName__ is the name of the test case
+where __testName__ is the name of the test case
 
 # Run with testcases
 Similarily open terminal and navigete to the impact directory and use the provided ***rushtests.sh*** srcipt file as follows (This script is designed for Linux users):
