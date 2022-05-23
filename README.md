@@ -29,5 +29,17 @@ Similarily open terminal and navigete to the impact directory and use the provid
         ./runtests.sh
 
 ***Note: If You wish to include more testcases, include them in the testcases folder as well as their corresponding suggested output***
+
+# Libraires:
+Imported libreies
+    java.util.ArrayList
+    java.util.Collection
+    java.util.Iterator
+    java.io.BufferedReader
+    java.io.IOException
+    java.io.InputStreeamReader
+No extenal libraies used for this program.
+    
+
     
 
