@@ -1,4 +1,4 @@
-### Summary rangers
+# Summary rangers
 A program that produces comma delimited lists of numbers, grouping them into ranges when these lists are sequential.
 In this context, a sequence is defined as two consecutive numbers with an interval of one between them. It is assumed that the input consists of sorted numbers.
 
