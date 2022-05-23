@@ -8,7 +8,7 @@ This is follwed my $M$ integer $F_1, F_2,....,F_M $, where $-2^{31}\leqslant F_i
     
 
 ## Output structure
-For input case, the output must start with a line that contains the case number $(1,2,3...)$, followed immediately by a colon, a single space and then list of delemited integers.The answer in the output appears the same order as they appear in the input.
+For each input case, the output must start with a line that contains the case number $(1,2,3...)$, followed immediately by a colon, a single space and then list of delemited integers.The answer in the output appears the same order as they appear in the input.
 
 ## Suggested output structure
 As previously explained (Output structure), the suggested output follows the same structure. The name of the suggested output must match the name of the input and the extension file should end with ***.suggested***. I.e ***NameTest.suggested***
