@@ -3,8 +3,8 @@ A program that produces comma delimited lists of numbers, grouping them into ran
 In this context, a sequence is defined as two consecutive numbers with an interval of one between them. It is assumed that the input consists of sorted numbers.
 
 ## Input structure
-The input contains multple test cases. The first line of the input contains the integer $N$, the number of test cases, where $0<N\neq 2^31$.
-This is follwed my $M$ integer $F_1, F_2,....,F_M $, where $-2^{31}\neqF_i \neq 2^{31}$. The integers are seperated by a single comma. An empty line is ignored in the input.
+The input contains multple test cases. The first line of the input contains the integer $N$, the number of test cases, where $ 0<N \neq 2^31$.
+This is follwed my $M$ integer $F_1, F_2,....,F_M $, where $-2^{31}\neq F_i \neq 2^{31}$. The integers are seperated by a single comma. An empty line is ignored in the input.
     
 
 ## Output structure
