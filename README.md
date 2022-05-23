@@ -11,7 +11,7 @@ This is follwed my $M$ integer $F_1, F_2,....,F_M $, where $-2^{31}\leqslant F_i
 For each input case, the output must start with a line that contains the case number $(1,2,3...)$, followed immediately by a colon, a single space and then list of delemited integers.The answer in the output appears the same order as they appear in the input.
 
 ## Suggested output structure
-As previously explained (Output structure), the suggested output follows the same structure. The name of the suggested output must match the name of the input and the extension file should end with ***.suggested***. I.e ***NameTest.suggested***
+As previously explained (Output structure), the suggested output follows the same structure. The name of the suggested output must match the name of the input and the extension file should end with ***.suggested***, i.e ***testName.suggested***
 
 ***Note: The end of the content should be a single new line without a leading white space (See suggested output examples in the testcases folder)***
 
@@ -19,7 +19,7 @@ As previously explained (Output structure), the suggested output follows the sam
 Extract impact.zip file. Open the extract folder. You can run the program manual or run with provided script file.
 
 # Run manual
-Open terminal and navigate to the extracted impact directory and excecute the followeing command:
+    Open terminal and navigate to the extracted impact directory and excecute the followeing command:
         javac numberrangesummarizer/*.java 
         java numberrangesummarizer.Main<testcases/testName.txt
     where __testName__ is the name of the test case
