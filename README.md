@@ -25,8 +25,9 @@ Extract impact.zip file. Open the extract folder. You can run the program manual
 where __testName__ is the name of the test case
 
 # Run with testcases
-    Similarily, open terminal and navigete to the impact directory 
-    and use the provided ***rushtests.sh*** srcipt file as follows (This script is designed for Linux users):
+    Similarily, open terminal and navigete to the impact directory.
+    and use the provided rushtests.sh srcipt file as follows (This script is designed for Linux users):
+    
         ./runtests.sh
 
 ***Note: If You wish to include more testcases, include them in the testcases folder as well as their corresponding suggested output***
